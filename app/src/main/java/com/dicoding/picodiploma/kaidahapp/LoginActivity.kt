@@ -1,11 +1,50 @@
 package com.dicoding.picodiploma.kaidahapp
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.content.Intent
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.dicoding.picodiploma.kaidahapp.databinding.ActivityLoginBinding
+
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val animationDrawable = binding.abc.background as AnimationDrawable
+        animationDrawable.setEnterFadeDuration(2000)
+        animationDrawable.setExitFadeDuration(4000)
+        animationDrawable.start()
+
+        val username = binding.edUsername.text
+        val password = binding.edPassword.text
+
+        binding.btnSignin.setOnClickListener{
+            Log.d("checkParam", "Username: ${username} | Password: ${password}")
+            login(this, username.toString(), password.toString())
+        }
+    }
+
+    private fun login(context: Context, username: String, password: String) {
+        Log.d("checkParam2", "Username: ${username} | Password: ${password}")
+        if (username == "coba"){
+            if (password == "coba"){
+                val intent = Intent(context, MainActivity::class.java)
+                startActivity(intent)
+                Toast.makeText(context, "Login Berhasil", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Kata Sandi Tidak Dapat ditemukan", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(context, "Nama Pengguna Tidak Dapat ditemukan", Toast.LENGTH_SHORT).show()
+        }
     }
 }
