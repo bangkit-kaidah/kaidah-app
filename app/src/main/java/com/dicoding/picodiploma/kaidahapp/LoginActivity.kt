@@ -56,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(intent)
                 Toast.makeText(context, "Login Berhasil", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(context, "Kata Sandi Tidak Dapat ditemukan", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Kata Sandi Salah", Toast.LENGTH_SHORT).show()
             }
         } else {
             Toast.makeText(context, "Nama Pengguna Tidak Dapat ditemukan", Toast.LENGTH_SHORT).show()

@@ -9,4 +9,6 @@
     <string name="ya">Ya</string>
     <string name="tidak">Tidak</string>
     <string name="profil">Profil</string>
+    <string name="keluar">Keluar</string>
+    <string name="nama_lengkap_pengguna">Nama Lengkap Pengguna...</string>
 </resources>

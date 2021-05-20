@@ -3,7 +3,6 @@ package com.dicoding.picodiploma.kaidahapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
 import com.dicoding.picodiploma.kaidahapp.databinding.ActivityMainBinding
 import com.dicoding.picodiploma.kaidahapp.fragment.FollowedFragment
 import com.dicoding.picodiploma.kaidahapp.fragment.HomeFragment
@@ -30,12 +29,16 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.frame_fragment, fragOne, "FragmentHome")
             commit()
         }
+        binding.fHome.setBackgroundColor(resources.getColor(R.color.grey))
 
         binding.fHome.setOnClickListener {
             supportFragmentManager.beginTransaction().apply {
                 replace(R.id.frame_fragment, fragOne, "FragmentHome")
                 commit()
             }
+            binding.fHome.setBackgroundColor(resources.getColor(R.color.grey))
+            binding.fFollowed.setBackgroundColor(resources.getColor(R.color.white))
+            binding.fProfile.setBackgroundColor(resources.getColor(R.color.white))
         }
 
         binding.fFollowed.setOnClickListener {
@@ -43,6 +46,9 @@ class MainActivity : AppCompatActivity() {
                 replace(R.id.frame_fragment, fragTwo, "FragmentFollowed")
                 commit()
             }
+            binding.fHome.setBackgroundColor(resources.getColor(R.color.white))
+            binding.fFollowed.setBackgroundColor(resources.getColor(R.color.grey))
+            binding.fProfile.setBackgroundColor(resources.getColor(R.color.white))
         }
 
         binding.fProfile.setOnClickListener {
@@ -50,6 +56,9 @@ class MainActivity : AppCompatActivity() {
                 replace(R.id.frame_fragment, fragThree, "FragmentProfile")
                 commit()
             }
+            binding.fHome.setBackgroundColor(resources.getColor(R.color.white))
+            binding.fFollowed.setBackgroundColor(resources.getColor(R.color.white))
+            binding.fProfile.setBackgroundColor(resources.getColor(R.color.grey))
         }
     }
 
@@ -60,16 +69,5 @@ class MainActivity : AppCompatActivity() {
         } .setNegativeButton(R.string.tidak) {
             dialog, whichButton -> //Close
         } .show()
-//        val currentFragment = this@MainActivity.supportFragmentManager.findFragmentByTag("FragmentHome")
-//        if(currentFragment is HomeFragment) {
-//            AlertDialog.Builder(this@MainActivity).setTitle("Keluar Aplikasi").setMessage("Apakah anda ingin menutup aplikasi?").setPositiveButton(R.string.ya) {
-//                dialog, whichButton -> super.onBackPressed()
-//            } .setNegativeButton(R.string.tidak) {
-//                dialog, whichButton -> //Close
-//            } .show()
-//        }
-//        else{
-//            super.onBackPressed()
-//        }
     }
 }

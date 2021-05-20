@@ -5,9 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.dicoding.picodiploma.kaidahapp.MainActivity
 import com.dicoding.picodiploma.kaidahapp.R
 
-class HomeFragment : Fragment() {
+class HomeFragment() : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
