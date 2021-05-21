@@ -38,7 +38,7 @@
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/white" android:text="Nama Lengkap" android:layout_marginTop="10dp"/>
             <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:layout_marginTop="5dp" android:orientation="horizontal" android:background="@drawable/border_1dp" android:gravity="center_vertical">
                 <LinearLayout android:layout_width="40dp" android:layout_height="match_parent" android:gravity="center" android:layout_marginTop="1dp" android:layout_marginBottom="1dp" android:layout_marginEnd="0dp" android:layout_marginStart="1dp" android:background="#AFAFAF">
-                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/avatar"/>
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/user"/>
                 </LinearLayout>
                 <EditText android:text="@string/nama_lengkap_pengguna" android:textSize="12sp" android:hint="@string/nama_lengkap_pengguna" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginTop="1dp" android:layout_marginBottom="1dp" android:layout_marginEnd="1dp" android:layout_marginStart="0dp" android:inputType="none"  android:focusable="false" android:clickable="false" android:paddingStart="10dp" android:paddingEnd="10dp" android:background="#DCDCDC"/>
             </LinearLayout>
@@ -46,7 +46,7 @@
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/white" android:text="Alamat E-mail" android:layout_marginTop="20dp"/>
             <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:layout_marginTop="5dp" android:orientation="horizontal" android:background="@drawable/border_1dp" android:gravity="center_vertical">
                 <LinearLayout android:layout_width="40dp" android:layout_height="match_parent" android:gravity="center" android:layout_marginTop="1dp" android:layout_marginBottom="1dp" android:layout_marginEnd="0dp" android:layout_marginStart="1dp" android:background="#AFAFAF">
-                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/avatar"/>
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/email"/>
                 </LinearLayout>
                 <EditText android:text="@string/alamat_e_mail_pengguna" android:textSize="12sp" android:hint="@string/alamat_e_mail_pengguna" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginTop="1dp" android:layout_marginBottom="1dp" android:layout_marginEnd="1dp" android:layout_marginStart="0dp" android:inputType="none"  android:focusable="false" android:clickable="false" android:paddingStart="10dp" android:paddingEnd="10dp" android:background="#DCDCDC"/>
             </LinearLayout>
@@ -54,7 +54,7 @@
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/white" android:text="Nomor Telepon" android:layout_marginTop="20dp"/>
             <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:layout_marginTop="5dp" android:orientation="horizontal" android:background="@drawable/border_1dp" android:gravity="center_vertical">
                 <LinearLayout android:layout_width="40dp" android:layout_height="match_parent" android:gravity="center" android:layout_marginTop="1dp" android:layout_marginBottom="1dp" android:layout_marginEnd="0dp" android:layout_marginStart="1dp" android:background="#AFAFAF">
-                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/avatar"/>
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/telephone"/>
                 </LinearLayout>
                 <EditText android:text="@string/nomor_telepon_pengguna" android:textSize="12sp" android:hint="@string/nomor_telepon_pengguna" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginTop="1dp" android:layout_marginBottom="1dp" android:layout_marginEnd="1dp" android:layout_marginStart="0dp" android:inputType="none"  android:focusable="false" android:clickable="false" android:paddingStart="10dp" android:paddingEnd="10dp" android:background="#DCDCDC"/>
             </LinearLayout>
@@ -62,7 +62,7 @@
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/white" android:text="Alamat" android:layout_marginTop="20dp"/>
             <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:layout_marginTop="5dp" android:orientation="horizontal" android:background="@drawable/border_1dp" android:gravity="center_vertical" android:layout_marginBottom="20dp">
                 <LinearLayout android:layout_width="40dp" android:layout_height="match_parent" android:gravity="center" android:layout_marginTop="1dp" android:layout_marginBottom="1dp" android:layout_marginEnd="0dp" android:layout_marginStart="1dp" android:background="#AFAFAF">
-                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/avatar"/>
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/address"/>
                 </LinearLayout>
                 <EditText android:text="@string/alamat_pengguna" android:textSize="12sp" android:hint="@string/alamat_pengguna" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginTop="1dp" android:layout_marginBottom="1dp" android:layout_marginEnd="1dp" android:layout_marginStart="0dp" android:inputType="none"  android:focusable="false" android:clickable="false" android:paddingStart="10dp" android:paddingEnd="10dp" android:background="#DCDCDC"/>
             </LinearLayout>

@@ -62,13 +62,15 @@
     <TextView
         android:id="@+id/tvSigninGuest"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:gravity="bottom|end"
         android:paddingStart="0dp"
-        android:paddingEnd="10dp"
+        android:paddingEnd="15dp"
         android:paddingBottom="10dp"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:text="@string/lewati"/>
 
 

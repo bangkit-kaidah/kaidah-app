@@ -1,11 +1,13 @@
 package com.dicoding.picodiploma.kaidahapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import com.dicoding.picodiploma.kaidahapp.databinding.ActivityMainBinding
 import com.dicoding.picodiploma.kaidahapp.fragment.FollowedFragment
 import com.dicoding.picodiploma.kaidahapp.fragment.HomeFragment
+import com.dicoding.picodiploma.kaidahapp.fragment.LoginFragment
 import com.dicoding.picodiploma.kaidahapp.fragment.ProfileFragment
 import com.dicoding.picodiploma.kaidahapp.helper.SharedPreference
 
@@ -20,10 +22,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         sharedPreference = SharedPreference(this)
+        val isSignedin = sharedPreference.getValueBoolien("signed", false)
+        val isGuest = sharedPreference.getValueBoolien("guest", false)
 
         val fragOne = HomeFragment()
         val fragTwo = FollowedFragment()
         val fragThree = ProfileFragment()
+        val fragFour = LoginFragment()
 
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.frame_fragment, fragOne, "FragmentHome")
@@ -53,7 +58,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.fProfile.setOnClickListener {
             supportFragmentManager.beginTransaction().apply {
-                replace(R.id.frame_fragment, fragThree, "FragmentProfile")
+                if (isGuest) {
+                    replace(R.id.frame_fragment, fragFour, "FragmentLogin")
+                }
+                if (isSignedin){
+                    replace(R.id.frame_fragment, fragThree, "FragmentProfile")
+                }
                 commit()
             }
             binding.fHome.setBackgroundColor(resources.getColor(R.color.white))

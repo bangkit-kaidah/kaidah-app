@@ -24,8 +24,13 @@ class LoginActivity : AppCompatActivity() {
 
         sharedPreference = SharedPreference(this)
         val isSignedin = sharedPreference.getValueBoolien("signed", false)
+        val isGuest = sharedPreference.getValueBoolien("guest", false)
 
         if (isSignedin) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+        if (isGuest) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
@@ -41,6 +46,12 @@ class LoginActivity : AppCompatActivity() {
         binding.btnSignin.setOnClickListener{
             Log.d("checkParam", "Username: ${username} | Password: ${password}")
             login(this, username.toString(), password.toString())
+        }
+
+        binding.tvSigninGuest.setOnClickListener {
+            sharedPreference.save("guest", true)
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 
