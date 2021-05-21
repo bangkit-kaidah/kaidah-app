@@ -1,51 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_4"
     tools:context=".fragment.ProfileFragment">
 
-    <LinearLayout android:id="@+id/head" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginStart="20dp" android:layout_marginEnd="20dp" android:layout_marginTop="40dp" android:layout_marginBottom="40dp" android:layout_width="match_parent" android:layout_height="wrap_content">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="100dp" android:gravity="top">
-            <de.hdodenhof.circleimageview.CircleImageView android:layout_width="80dp" android:layout_height="80dp" android:id="@+id/ivAvatar" android:src="@drawable/favorite"/>
-            <RelativeLayout android:paddingStart="20dp" android:paddingEnd="0dp" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
-                <TextView android:gravity="start" android:id="@+id/tvName" android:text="@string/nama_lengkap_pengguna" android:textStyle="bold" android:textSize="20sp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-                <TextView android:gravity="start" android:layout_below="@+id/tvName" android:id="@+id/tvUsername" android:text="@string/nama_pengguna" android:textSize="12sp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-                <Button android:id="@+id/btnSignout" android:layout_width="90dp" android:layout_height="50dp" android:text="@string/keluar" android:textSize="12sp" android:layout_alignParentBottom="true" android:layout_alignParentEnd="true"/>
-            </RelativeLayout>
-        </LinearLayout>
-    </LinearLayout>
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/body"
-        android:layout_below="@+id/head"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:text="Nama Lengkap"/>
-        <EditText
+        <RelativeLayout android:id="@+id/head" android:orientation="horizontal" android:layout_marginStart="20dp" android:layout_marginEnd="20dp" android:layout_marginTop="40dp" android:layout_marginBottom="40dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView android:layout_width="70dp" android:layout_height="70dp" android:id="@+id/ivAvatar" android:src="@drawable/shinobu"/>
+            <RelativeLayout android:layout_toRightOf="@+id/ivAvatar" android:paddingStart="10dp" android:paddingEnd="0dp" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView android:textColor="@color/white" android:gravity="start" android:id="@+id/tvName" android:text="@string/nama_lengkap_pengguna" android:textStyle="bold" android:textSize="18sp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                <TextView android:textColor="@color/white" android:gravity="start" android:layout_below="@+id/tvName" android:id="@+id/tvUsername" android:text="@string/nama_pengguna" android:textSize="12sp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                <Button android:id="@+id/btnSignout" android:layout_width="90dp" android:layout_height="50dp" android:text="@string/keluar" android:textSize="12sp" android:layout_below="@+id/tvUsername" android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
+            <TextView
+                android:layout_below="@+id/ivAvatar"
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Info"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/body"
+            android:layout_below="@+id/head"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nama Lengkap"/>
-        <com.google.android.material.textfield.TextInputLayout
-            android:hint="Full Name"
-            android:id="@+id/full_name_profile"
-            android:gravity="center_vertical"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:padding="20dp"
+            android:orientation="vertical"
+            android:background="#80ffffff"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:drawableStart="@drawable/avatar"
-                android:drawablePadding="10dp"
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/white" android:text="Nama Lengkap" android:layout_marginTop="10dp"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:layout_marginTop="5dp" android:orientation="horizontal" android:background="@drawable/border_1dp" android:gravity="center_vertical">
+                <LinearLayout android:layout_width="40dp" android:layout_height="match_parent" android:gravity="center" android:layout_marginTop="1dp" android:layout_marginBottom="1dp" android:layout_marginEnd="0dp" android:layout_marginStart="1dp" android:background="#AFAFAF">
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/avatar"/>
+                </LinearLayout>
+                <EditText android:text="@string/nama_lengkap_pengguna" android:textSize="12sp" android:hint="@string/nama_lengkap_pengguna" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginTop="1dp" android:layout_marginBottom="1dp" android:layout_marginEnd="1dp" android:layout_marginStart="0dp" android:inputType="none"  android:focusable="false" android:clickable="false" android:paddingStart="10dp" android:paddingEnd="10dp" android:background="#DCDCDC"/>
+            </LinearLayout>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/white" android:text="Alamat E-mail" android:layout_marginTop="20dp"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:layout_marginTop="5dp" android:orientation="horizontal" android:background="@drawable/border_1dp" android:gravity="center_vertical">
+                <LinearLayout android:layout_width="40dp" android:layout_height="match_parent" android:gravity="center" android:layout_marginTop="1dp" android:layout_marginBottom="1dp" android:layout_marginEnd="0dp" android:layout_marginStart="1dp" android:background="#AFAFAF">
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/avatar"/>
+                </LinearLayout>
+                <EditText android:text="@string/alamat_e_mail_pengguna" android:textSize="12sp" android:hint="@string/alamat_e_mail_pengguna" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginTop="1dp" android:layout_marginBottom="1dp" android:layout_marginEnd="1dp" android:layout_marginStart="0dp" android:inputType="none"  android:focusable="false" android:clickable="false" android:paddingStart="10dp" android:paddingEnd="10dp" android:background="#DCDCDC"/>
+            </LinearLayout>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/white" android:text="Nomor Telepon" android:layout_marginTop="20dp"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:layout_marginTop="5dp" android:orientation="horizontal" android:background="@drawable/border_1dp" android:gravity="center_vertical">
+                <LinearLayout android:layout_width="40dp" android:layout_height="match_parent" android:gravity="center" android:layout_marginTop="1dp" android:layout_marginBottom="1dp" android:layout_marginEnd="0dp" android:layout_marginStart="1dp" android:background="#AFAFAF">
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/avatar"/>
+                </LinearLayout>
+                <EditText android:text="@string/nomor_telepon_pengguna" android:textSize="12sp" android:hint="@string/nomor_telepon_pengguna" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginTop="1dp" android:layout_marginBottom="1dp" android:layout_marginEnd="1dp" android:layout_marginStart="0dp" android:inputType="none"  android:focusable="false" android:clickable="false" android:paddingStart="10dp" android:paddingEnd="10dp" android:background="#DCDCDC"/>
+            </LinearLayout>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/white" android:text="Alamat" android:layout_marginTop="20dp"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:layout_marginTop="5dp" android:orientation="horizontal" android:background="@drawable/border_1dp" android:gravity="center_vertical" android:layout_marginBottom="20dp">
+                <LinearLayout android:layout_width="40dp" android:layout_height="match_parent" android:gravity="center" android:layout_marginTop="1dp" android:layout_marginBottom="1dp" android:layout_marginEnd="0dp" android:layout_marginStart="1dp" android:background="#AFAFAF">
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/avatar"/>
+                </LinearLayout>
+                <EditText android:text="@string/alamat_pengguna" android:textSize="12sp" android:hint="@string/alamat_pengguna" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginTop="1dp" android:layout_marginBottom="1dp" android:layout_marginEnd="1dp" android:layout_marginStart="0dp" android:inputType="none"  android:focusable="false" android:clickable="false" android:paddingStart="10dp" android:paddingEnd="10dp" android:background="#DCDCDC"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status Premium: "
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aktif/Non-Aktif"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="20dp"
+            android:background="@color/donker"
+            android:layout_below="@+id/body"
+            android:id="@+id/btnBuyPremium"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:text="BELI PREMIUM"/>
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.core.widget.NestedScrollView>
