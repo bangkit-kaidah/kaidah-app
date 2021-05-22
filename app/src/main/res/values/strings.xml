@@ -14,4 +14,6 @@
     <string name="alamat_e_mail_pengguna">Alamat E-mail Pengguna</string>
     <string name="nomor_telepon_pengguna">Nomor Telepon Pengguna</string>
     <string name="alamat_pengguna">Alamat Pengguna</string>
+    <string name="k">K</string>
+    <string name="aidah">AIDAH</string>
 </resources>

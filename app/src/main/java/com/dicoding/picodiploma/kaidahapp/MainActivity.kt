@@ -1,6 +1,5 @@
 package com.dicoding.picodiploma.kaidahapp
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
@@ -34,16 +33,16 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.frame_fragment, fragOne, "FragmentHome")
             commit()
         }
-        binding.fHome.setBackgroundColor(resources.getColor(R.color.grey))
+        binding.ivHome.setImageResource(R.drawable.home_2)
 
         binding.fHome.setOnClickListener {
             supportFragmentManager.beginTransaction().apply {
                 replace(R.id.frame_fragment, fragOne, "FragmentHome")
                 commit()
             }
-            binding.fHome.setBackgroundColor(resources.getColor(R.color.grey))
-            binding.fFollowed.setBackgroundColor(resources.getColor(R.color.white))
-            binding.fProfile.setBackgroundColor(resources.getColor(R.color.white))
+            binding.ivHome.setImageResource(R.drawable.home_2)
+            binding.ivFollowed.setImageResource(R.drawable.followed_1)
+            binding.ivProfile.setImageResource(R.drawable.profile_1)
         }
 
         binding.fFollowed.setOnClickListener {
@@ -51,9 +50,9 @@ class MainActivity : AppCompatActivity() {
                 replace(R.id.frame_fragment, fragTwo, "FragmentFollowed")
                 commit()
             }
-            binding.fHome.setBackgroundColor(resources.getColor(R.color.white))
-            binding.fFollowed.setBackgroundColor(resources.getColor(R.color.grey))
-            binding.fProfile.setBackgroundColor(resources.getColor(R.color.white))
+            binding.ivHome.setImageResource(R.drawable.home_1)
+            binding.ivFollowed.setImageResource(R.drawable.followed_2)
+            binding.ivProfile.setImageResource(R.drawable.profile_1)
         }
 
         binding.fProfile.setOnClickListener {
@@ -66,9 +65,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 commit()
             }
-            binding.fHome.setBackgroundColor(resources.getColor(R.color.white))
-            binding.fFollowed.setBackgroundColor(resources.getColor(R.color.white))
-            binding.fProfile.setBackgroundColor(resources.getColor(R.color.grey))
+            binding.ivHome.setImageResource(R.drawable.home_1)
+            binding.ivFollowed.setImageResource(R.drawable.followed_1)
+            binding.ivProfile.setImageResource(R.drawable.profile_2)
         }
     }
 
