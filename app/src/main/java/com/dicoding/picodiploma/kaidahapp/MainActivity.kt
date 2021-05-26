@@ -4,10 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import com.dicoding.picodiploma.kaidahapp.databinding.ActivityMainBinding
-import com.dicoding.picodiploma.kaidahapp.fragment.FollowedFragment
-import com.dicoding.picodiploma.kaidahapp.fragment.HomeFragment
-import com.dicoding.picodiploma.kaidahapp.fragment.LoginFragment
-import com.dicoding.picodiploma.kaidahapp.fragment.ProfileFragment
+import com.dicoding.picodiploma.kaidahapp.fragment.*
 import com.dicoding.picodiploma.kaidahapp.helper.SharedPreference
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         val fragTwo = FollowedFragment()
         val fragThree = ProfileFragment()
         val fragFour = LoginFragment()
+        val fragFive = CategoryFragment()
 
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.frame_fragment, fragOne, "FragmentHome")
@@ -41,7 +39,19 @@ class MainActivity : AppCompatActivity() {
                 commit()
             }
             binding.ivHome.setImageResource(R.drawable.home_2)
-            binding.ivFollowed.setImageResource(R.drawable.followed_1)
+            binding.ivCategory.setImageResource(R.drawable.maintenance_1)
+            binding.ivFollowed.setImageResource(R.drawable.admin_1)
+            binding.ivProfile.setImageResource(R.drawable.profile_1)
+        }
+
+        binding.fCategory.setOnClickListener {
+            supportFragmentManager.beginTransaction().apply {
+                replace(R.id.frame_fragment, fragFive, "CategoryHome")
+                commit()
+            }
+            binding.ivHome.setImageResource(R.drawable.home_1)
+            binding.ivCategory.setImageResource(R.drawable.maintenance_2)
+            binding.ivFollowed.setImageResource(R.drawable.admin_1)
             binding.ivProfile.setImageResource(R.drawable.profile_1)
         }
 
@@ -51,7 +61,8 @@ class MainActivity : AppCompatActivity() {
                 commit()
             }
             binding.ivHome.setImageResource(R.drawable.home_1)
-            binding.ivFollowed.setImageResource(R.drawable.followed_2)
+            binding.ivCategory.setImageResource(R.drawable.maintenance_1)
+            binding.ivFollowed.setImageResource(R.drawable.admin_2)
             binding.ivProfile.setImageResource(R.drawable.profile_1)
         }
 
@@ -66,7 +77,8 @@ class MainActivity : AppCompatActivity() {
                 commit()
             }
             binding.ivHome.setImageResource(R.drawable.home_1)
-            binding.ivFollowed.setImageResource(R.drawable.followed_1)
+            binding.ivCategory.setImageResource(R.drawable.maintenance_1)
+            binding.ivFollowed.setImageResource(R.drawable.admin_1)
             binding.ivProfile.setImageResource(R.drawable.profile_2)
         }
     }

@@ -14,6 +14,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/donker"
+        android:layout_above="@+id/navigation"/>
+
+    <LinearLayout
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true">
@@ -38,6 +45,26 @@
                 android:text="Beranda"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/fCategory"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/ivCategory"
+                android:background="@drawable/maintenance_1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:textColor="@color/donker"
+                android:textStyle="bold"
+                android:text="Kategori"/>
+        </LinearLayout>
+        <LinearLayout
             android:id="@+id/fFollowed"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -48,14 +75,14 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:id="@+id/ivFollowed"
-                android:background="@drawable/followed_1"/>
+                android:background="@drawable/admin_1"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
                 android:textColor="@color/donker"
                 android:textStyle="bold"
-                android:text="Diikuti"/>
+                android:text="Member"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/fProfile"
@@ -78,4 +105,5 @@
                 android:text="@string/profil"/>
         </LinearLayout>
     </LinearLayout>
+
 </RelativeLayout>

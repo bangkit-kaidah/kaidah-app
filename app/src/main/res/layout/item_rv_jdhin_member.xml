@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:background="@drawable/border_item_rv">
+
+    <TextView
+        android:id="@+id/tvJdihnMemberName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Nama JDIHN"
+        android:background="@drawable/border_tab_name"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_below="@+id/tvJdihnMemberName"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="8">
+            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                <de.hdodenhof.circleimageview.CircleImageView android:id="@+id/ivAvatarMember" android:src="@drawable/shinobu" android:layout_width="40dp" android:layout_height="40dp" android:layout_centerVertical="true"/>
+                <LinearLayout android:padding="10dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_toEndOf="@+id/ivAvatarMember" android:orientation="vertical">
+                    <TextView android:id="@+id/tvJdihnMemberLeader" android:text="Nama Ketua" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="12sp" android:textColor="@color/black"/>
+                    <TextView android:id="@+id/tvJdihnMemberInfo" android:text="Keterangan Fungsi Anggota JDHIN" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="12sp" android:textColor="@color/black"/>
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/btnSee"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/next"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

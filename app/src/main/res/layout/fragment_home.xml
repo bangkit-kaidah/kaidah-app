@@ -12,11 +12,7 @@
                 <TextView android:text="@string/aidah" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="18sp" android:textColor="@color/white" android:textStyle="bold"/>
             </LinearLayout>
             <ImageView android:id="@+id/ivNews" android:layout_width="20dp" android:layout_height="20dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/newspaper"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/green_live"
-                android:layout_below="@+id/textAppName"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/green_live" android:layout_below="@+id/textAppName"/>
         </RelativeLayout>
         <LinearLayout android:id="@+id/aboutBarr" android:layout_below="@+id/titleBar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginStart="20dp" android:layout_marginEnd="20dp" android:layout_marginBottom="35dp">
             <TextView android:text="Kaidah adalah suatu aplikasi android bla bla bla yang dirancang untuk bla bla bla dan bla bla bla" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/white" android:justificationMode="inter_word" android:textSize="14sp"/>
@@ -24,20 +20,11 @@
     </RelativeLayout>
 
     <RelativeLayout android:id="@+id/body" android:layout_below="@+id/head" android:layout_width="match_parent" android:layout_height="match_parent" android:padding="20dp">
-        <RelativeLayout android:id="@+id/tabName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:padding="10dp" android:background="@drawable/tab_color">
+        <RelativeLayout android:id="@+id/tabName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:padding="10dp" android:background="@drawable/border_tab_name">
             <TextView android:text="Anggota JDIHN" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" android:textColor="@color/white"/>
         </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/rvSpace"
-            android:layout_below="@+id/tabName"
-            android:layout_width="match_parent"
-            android:background="@drawable/border_rv_3dp"
-            android:padding="10dp"
-            android:layout_height="match_parent">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvJdihnMember"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+        <RelativeLayout android:id="@+id/rvSpace" android:layout_below="@+id/tabName" android:layout_width="match_parent" android:background="@drawable/border_rv_3dp" android:paddingTop="5dp" android:paddingBottom="5dp" android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView android:id="@+id/rvJdihnMember" android:layout_width="match_parent" android:layout_height="match_parent"/>
         </RelativeLayout>
     </RelativeLayout>
 
