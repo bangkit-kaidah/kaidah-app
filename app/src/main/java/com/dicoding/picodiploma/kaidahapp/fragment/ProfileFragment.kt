@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import com.dicoding.picodiploma.kaidahapp.PremiumActivity
 import com.dicoding.picodiploma.kaidahapp.R
 import com.dicoding.picodiploma.kaidahapp.databinding.FragmentProfileBinding
 import com.dicoding.picodiploma.kaidahapp.helper.SharedPreference
@@ -36,6 +37,11 @@ class ProfileFragment : Fragment() {
             } .setNegativeButton(R.string.tidak) {
                     dialog, whichButton -> //Close
             } .show()
+        }
+
+        binding.btnBuyPremium.setOnClickListener {
+            val intent = Intent(requireContext(), PremiumActivity::class.java)
+            startActivity(intent)
         }
     }
 }

@@ -48,6 +48,11 @@ class LoginActivity : AppCompatActivity() {
             login(this, username.toString(), password.toString())
         }
 
+        binding.tvSignup.setOnClickListener {
+            val intent = Intent(this, SignupActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.tvSigninGuest.setOnClickListener {
             sharedPreference.save("guest", true)
             val intent = Intent(this, MainActivity::class.java)
