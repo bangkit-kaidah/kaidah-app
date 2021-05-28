@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         val isGuest = sharedPreference.getValueBoolien("guest", false)
 
         val fragOne = HomeFragment()
-        val fragTwo = FollowedFragment()
+        val fragTwo = MemberFragment()
         val fragThree = ProfileFragment()
         val fragFour = LoginFragment()
         val fragFive = CategoryFragment()

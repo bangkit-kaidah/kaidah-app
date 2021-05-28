@@ -54,4 +54,5 @@ class HomeFragment() : Fragment() {
     private fun partItemClicked(member : JdihnMemberParam) {
         Toast.makeText(context, "${member.name} Clicked", Toast.LENGTH_SHORT).show()
     }
+
 }
