@@ -10,4 +10,7 @@
     <color name="grey">#DCDCDC</color>
     <color name="donker">#003466</color>
     <color name="green_live">#64FFC0</color>
+    <color name="smoke">#F0F0F0</color>
+    <color name="toska">#47B5B5</color>
+    <color name="red">#FF0000</color>
 </resources>
