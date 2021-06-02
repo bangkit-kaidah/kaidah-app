@@ -33,12 +33,12 @@ class SignupActivity : AppCompatActivity() {
         val password = binding.edPassword.text
         val confirm_password = binding.edConfirmPassword.text
 
-        var phoneParam: Int? = null
+        var phoneParam: String? = null
         var addressParam: String? = null
         var infoParam: String? = null
 
         if (!phone.toString().trim().isEmpty()) {
-            phoneParam = phone.toString().toInt()
+            phoneParam = phone.toString()
         }
         if (!address.toString().trim().isEmpty()) {
             addressParam = address.toString()

@@ -2,13 +2,13 @@ package com.dicoding.picodiploma.kaidahapp.api
 
 import retrofit2.Call
 import com.dicoding.picodiploma.kaidahapp.entity.LoginResponse
+import com.dicoding.picodiploma.kaidahapp.entity.ProfileResponse
 import com.dicoding.picodiploma.kaidahapp.entity.RegisterResponse
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import com.dicoding.picodiploma.kaidahapp.helper.SharedPreference
+import retrofit2.http.*
 
 interface Api {
+
     @FormUrlEncoded
     @POST("/api/v1/login")
     fun userLogin(
@@ -23,11 +23,12 @@ interface Api {
         @Field("email") email: String,
         @Field("password") password: String,
         @Field("password_confirmation") password_confirmation: String,
-        @Field("phone") phone: Int?,
+        @Field("phone") phone: String?,
         @Field("address") address: String?,
         @Field("info") info: String?,
     ): Call<RegisterResponse>
 
-    @GET("api/v1/subjects")
-    fun getDataSubject(): Call<ArrayList<RegisterResponse>>
+    @GET("/api/v1/profile")
+    fun userProfile(): Call<ProfileResponse>
+
 }

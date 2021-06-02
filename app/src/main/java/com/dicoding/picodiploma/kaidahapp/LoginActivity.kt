@@ -22,6 +22,10 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var sharedPreference: SharedPreference
 
+    companion object {
+        var token = ""
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -62,8 +66,21 @@ class LoginActivity : AppCompatActivity() {
                         Log.d("Teasddd1", response.body()?.message.toString())
                         if (!respond.isNullOrEmpty()){
                             Log.d("Teasddd2", respond.toString())
+                            var phoneParam: String? = null
+                            var addressParam: String? = null
+                            var infoParam: String? = null
+
+                            phoneParam = response.body()?.user!!.phone
+                            addressParam = response.body()?.user!!.address
+                            infoParam = response.body()?.user!!.info
+                            sharedPreference.save("name", response.body()?.user!!.name)
                             sharedPreference.save("email", response.body()?.user!!.email)
+                            sharedPreference.save("phone", phoneParam)
+                            sharedPreference.save("address", addressParam)
+                            sharedPreference.save("info", infoParam)
+                            sharedPreference.save("roleId", response.body()?.user!!.role_id)
                             sharedPreference.save("token", response.body()?.token!!)
+                            token = response.body()?.token!!
                             sharedPreference.save("password", password.toString())
                             sharedPreference.save("signed", true)
 
