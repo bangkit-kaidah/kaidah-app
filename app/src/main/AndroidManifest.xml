@@ -2,20 +2,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dicoding.picodiploma.kaidahapp">
 
-    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:screenOrientation="portrait"
         android:theme="@style/MyTheme">
-        <activity android:name=".PremiumActivity"/>
+        <activity android:name=".LoginActivity"/>
+        <activity android:name=".PremiumActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".MemberDetailActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".datadetail.DetailActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,5 +24,7 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

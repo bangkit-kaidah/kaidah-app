@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         val fragTwo = MemberFragment()
         val fragThree = ProfileFragment()
         val fragFour = LoginFragment()
-        val fragFive = CategoryFragment()
+        val fragFive = SubjectFragment()
 
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.frame_fragment, fragOne, "FragmentHome")
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.fCategory.setOnClickListener {
             supportFragmentManager.beginTransaction().apply {
-                replace(R.id.frame_fragment, fragFive, "CategoryHome")
+                replace(R.id.frame_fragment, fragFive, "SubjectHome")
                 commit()
             }
             binding.ivHome.setImageResource(R.drawable.home_1)

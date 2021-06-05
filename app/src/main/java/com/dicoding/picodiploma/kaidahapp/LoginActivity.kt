@@ -1,6 +1,5 @@
 package com.dicoding.picodiploma.kaidahapp
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -14,7 +13,6 @@ import com.dicoding.picodiploma.kaidahapp.helper.SharedPreference
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
 
 
 class LoginActivity : AppCompatActivity() {
@@ -70,15 +68,15 @@ class LoginActivity : AppCompatActivity() {
                             var addressParam: String? = null
                             var infoParam: String? = null
 
-                            phoneParam = response.body()?.user!!.phone
-                            addressParam = response.body()?.user!!.address
-                            infoParam = response.body()?.user!!.info
-                            sharedPreference.save("name", response.body()?.user!!.name)
-                            sharedPreference.save("email", response.body()?.user!!.email)
+                            phoneParam = response.body()?.userParam!!.phone
+                            addressParam = response.body()?.userParam!!.address
+                            infoParam = response.body()?.userParam!!.info
+                            sharedPreference.save("name", response.body()?.userParam!!.name)
+                            sharedPreference.save("email", response.body()?.userParam!!.email)
                             sharedPreference.save("phone", phoneParam)
                             sharedPreference.save("address", addressParam)
                             sharedPreference.save("info", infoParam)
-                            sharedPreference.save("roleId", response.body()?.user!!.role_id)
+                            sharedPreference.save("roleId", response.body()?.userParam!!.role_id)
                             sharedPreference.save("token", response.body()?.token!!)
                             token = response.body()?.token!!
                             sharedPreference.save("password", password.toString())
@@ -99,6 +97,8 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
                     override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                        binding.btnSignin.visibility = View.VISIBLE
+                        binding.progressBar.visibility = View.GONE
                         Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
                     }
                 })

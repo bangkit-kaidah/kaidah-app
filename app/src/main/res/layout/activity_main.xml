@@ -62,7 +62,7 @@
                 android:textSize="10sp"
                 android:textColor="@color/donker"
                 android:textStyle="bold"
-                android:text="Kategori"/>
+                android:text="Subjek"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/fFollowed"

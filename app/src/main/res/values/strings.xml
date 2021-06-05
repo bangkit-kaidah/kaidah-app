@@ -10,7 +10,7 @@
     <string name="tidak">Tidak</string>
     <string name="profil">Profil</string>
     <string name="keluar">Keluar</string>
-    <string name="nama_lengkap_pengguna">Nama Lengkap Pengguna...</string>
+    <string name="nama_lengkap_pengguna">Nama Lengkap Pengguna</string>
     <string name="alamat_e_mail_pengguna">Alamat E-mail Pengguna</string>
     <string name="nomor_telepon_pengguna">Nomor Telepon Pengguna</string>
     <string name="alamat_pengguna">Alamat Pengguna</string>
@@ -30,4 +30,10 @@
     <string name="status">Status</string>
     <string name="history">Riwayat</string>
     <string name="back">kembali</string>
+    <string name="for_download" translatable="false">for download</string>
+    <string name="image_for_title" translatable="false">image for title</string>
+    <string name="title_detail">Regulation Detail</string>
+    <string name="page_regulation">Page Regulation</string>
+    <string name="subject_regulation">Subject Regulation</string>
+    <string name="page_subject">Page Subject</string>
 </resources>

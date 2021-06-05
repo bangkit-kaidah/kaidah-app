@@ -1,9 +1,7 @@
 package com.dicoding.picodiploma.kaidahapp.api
 
+import com.dicoding.picodiploma.kaidahapp.entity.*
 import retrofit2.Call
-import com.dicoding.picodiploma.kaidahapp.entity.LoginResponse
-import com.dicoding.picodiploma.kaidahapp.entity.ProfileResponse
-import com.dicoding.picodiploma.kaidahapp.entity.RegisterResponse
 import com.dicoding.picodiploma.kaidahapp.helper.SharedPreference
 import retrofit2.http.*
 
@@ -31,4 +29,9 @@ interface Api {
     @GET("/api/v1/profile")
     fun userProfile(): Call<ProfileResponse>
 
+    @GET("/api/v1/featured-subjects")
+    fun topSubject(): Call<ArrayList<FeaturedSubjectsResponse>>
+
+    @GET("/api/v1/documents")
+    fun topRegulations(): Call<TopRegulationsResponse>
 }

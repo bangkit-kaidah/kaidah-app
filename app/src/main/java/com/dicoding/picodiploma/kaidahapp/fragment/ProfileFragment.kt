@@ -89,7 +89,7 @@ class ProfileFragment : Fragment() {
         view.visibility = View.VISIBLE
         fade.animate().alpha(0.0f).setDuration(100)
         val valueAnimator = ValueAnimator.ofInt(view.measuredHeight, parent.measuredHeight)
-        valueAnimator.duration = 500L
+        valueAnimator.duration = 200L
         valueAnimator.addUpdateListener {
             val animatedValue = valueAnimator.animatedValue as Int
             val layoutParams = view.layoutParams

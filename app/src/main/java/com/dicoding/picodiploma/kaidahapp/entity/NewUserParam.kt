@@ -1,6 +1,6 @@
 package com.dicoding.picodiploma.kaidahapp.entity
 
-data class NewUser (
+data class NewUserParam (
     val name: String,
     val email: String,
     val phone: String?,
