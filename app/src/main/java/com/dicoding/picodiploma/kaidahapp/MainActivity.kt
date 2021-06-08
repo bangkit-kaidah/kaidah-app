@@ -85,10 +85,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         AlertDialog.Builder(this@MainActivity).setTitle("Keluar Aplikasi").setMessage("Apakah anda ingin menutup aplikasi?").setPositiveButton(R.string.ya) {
-            dialog, whichButton -> super.onBackPressed()
+            _, _ -> super.onBackPressed()
             finishAffinity()
         } .setNegativeButton(R.string.tidak) {
-            dialog, whichButton -> //Close
+            _, _ -> //Close
         } .show()
     }
+
 }

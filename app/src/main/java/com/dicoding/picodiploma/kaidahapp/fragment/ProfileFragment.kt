@@ -15,6 +15,7 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.AnimationSet
 import android.view.animation.DecelerateInterpolator
 import androidx.appcompat.app.AlertDialog
+import com.dicoding.picodiploma.kaidahapp.EditProfileActivity
 import com.dicoding.picodiploma.kaidahapp.LoginActivity
 import com.dicoding.picodiploma.kaidahapp.PremiumActivity
 import com.dicoding.picodiploma.kaidahapp.R
@@ -65,6 +66,11 @@ class ProfileFragment : Fragment() {
             } .setNegativeButton(R.string.tidak) {
                 dialog, whichButton -> //Close
             } .show()
+        }
+
+        binding.btnEditProfile.setOnClickListener {
+            val intent = Intent(requireActivity(), EditProfileActivity::class.java)
+            startActivity(intent)
         }
 
         return binding.root

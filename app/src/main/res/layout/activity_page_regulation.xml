@@ -1,39 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".dataregulation.PageRegulationActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tolbar3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:targetApi="p">
+        android:background="@drawable/background_title">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tolbar3"
+        <TextView
+            android:id="@+id/textToolbar2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/teal_200">
+            android:gravity="center"
+            android:text="@string/page_regulation"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
 
-            <TextView
-                android:id="@+id/textToolbar2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Page Regulation"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-        </androidx.appcompat.widget.Toolbar>
-    </com.google.android.material.appbar.AppBarLayout>
+       <ScrollView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/rv_pageRegulation1"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_pageRegulation1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+               <ProgressBar
+                   android:id="@+id/progressBar"
+                   style="?android:attr/progressBarStyle"
+                   android:layout_width="match_parent"
+                   android:layout_height="50dp" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+           </LinearLayout>
+       </ScrollView>
+
+
+</LinearLayout>

@@ -1,22 +1,36 @@
 package com.dicoding.picodiploma.kaidahapp.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.recyclerview.widget.GridLayoutManager
-import com.dicoding.picodiploma.kaidahapp.adapter.SubjectAdapter
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.dicoding.picodiploma.kaidahapp.adapter.JdihnMemberAdapter
+import com.dicoding.picodiploma.kaidahapp.adapter.SubjectAdaptor
+import com.dicoding.picodiploma.kaidahapp.adapter.TopSubjectAdapter
 import com.dicoding.picodiploma.kaidahapp.databinding.FragmentSubjectBinding
-import com.dicoding.picodiploma.kaidahapp.entity.SubjectParam
+import com.dicoding.picodiploma.kaidahapp.datajdhin.JdhinSerialized
+import com.dicoding.picodiploma.kaidahapp.dataregulation.PageRegulationActivity
+import com.dicoding.picodiploma.kaidahapp.datasubject.AdapterSubject
+import com.dicoding.picodiploma.kaidahapp.datasubject.SubjectSerialized
+import com.dicoding.picodiploma.kaidahapp.retrofit.DataClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SubjectFragment : Fragment() {
 
     private lateinit var _binding: FragmentSubjectBinding
     private val binding get() = _binding
-    private lateinit var adapter: SubjectAdapter
-    var categoryArray = arrayOf("Pajak", "Kehutanan", "Pertanian", "Perairan", "Militer")
+    private lateinit var adapter: SubjectAdaptor
+    private val list: ArrayList<SubjectSerialized> = arrayListOf()
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var layoutManagerrv : LinearLayoutManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentSubjectBinding.inflate(inflater, container, false)
@@ -24,27 +38,72 @@ class SubjectFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        binding.rvCategory.layoutManager = GridLayoutManager(context, 4)
-//        adapter = SubjectAdapter { category : SubjectParam -> partItemClicked(category) }
-//        binding.rvCategory.adapter = adapter
-//
-//        inputData()
+        super.onViewCreated(view, savedInstanceState)
+
+        layoutManagerrv = LinearLayoutManager(requireContext())
+
+        addDataFromAPI()
+        adapter = SubjectAdaptor(list)
+        recyclerView = binding.rvSubject
+
+        binding.edCariSubject.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                getSearchJdhin(binding.edCariSubject.text.toString())
+                return@OnEditorActionListener true
+            }
+            false
+        })
     }
 
-//    private fun inputData(){
-//        val listItems = ArrayList<SubjectParam>()
-//        for (x in 0..categoryArray.size-1){
-//            val item = SubjectParam()
-//            item.category = categoryArray[x]
-//            listItems.add(item)
-//            adapter.setData(listItems)
-//            adapter.notifyDataSetChanged()
-//        }
-//    }
-//
-//    private fun partItemClicked(category : SubjectParam) {
-//        Toast.makeText(context, "${category.category} Clicked", Toast.LENGTH_SHORT).show()
-//    }
+    private fun addDataFromAPI(){
+        DataClient.InstanceApi.getDataSubject().enqueue(object : Callback<ArrayList<SubjectSerialized>> {
+            override fun onResponse(
+                    call: Call<ArrayList<SubjectSerialized>>,
+                    response: Response<ArrayList<SubjectSerialized>>
+            ) {
+                recyclerView.layoutManager = layoutManagerrv
+                recyclerView.adapter = adapter
+                response.body()?.let { adapter.setterList(it) }
+                adapter.setOnItemClickCallback(object : SubjectAdaptor.OnItemClickCallback{
+                    override fun onItemCLicked(data: SubjectSerialized) {
+                        showSelectedRecyclerView(data)
+                    }
+                })
+                //adapterSubject.setterlist(response.body)
+            }
+
+            override fun onFailure(call: Call<ArrayList<SubjectSerialized>>, t: Throwable) {
+            }
+
+        })
+    }
+
+    private fun showSelectedRecyclerView(data: SubjectSerialized){
+        val e = Intent(requireActivity(), PageRegulationActivity::class.java)
+        e.putExtra(PageRegulationActivity.EXTRA, data.id)
+        startActivity(e)
+    }
+
+    private fun getSearchJdhin(username: String){
+        DataClient.InstanceApi.getSearchSubject(username).enqueue(object : Callback<ArrayList<SubjectSerialized>> {
+            override fun onResponse(
+                    call: Call<ArrayList<SubjectSerialized>>,
+                    response: Response<ArrayList<SubjectSerialized>>
+            ) {
+                recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                recyclerView.adapter = adapter
+                response.body()?.let { adapter.setterList(it) }
+                adapter.setOnItemClickCallback(object : SubjectAdaptor.OnItemClickCallback {
+                    override fun onItemCLicked(data: SubjectSerialized) {
+                        showSelectedRecyclerView(data)
+                    }
+                })
+            }
+
+            override fun onFailure(call: Call<ArrayList<SubjectSerialized>>, t: Throwable) {
+            }
+
+        })
+    }
+
 }

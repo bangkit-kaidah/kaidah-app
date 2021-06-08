@@ -1,14 +1,19 @@
 package com.dicoding.picodiploma.kaidahapp.datadetail
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import com.dicoding.picodiploma.kaidahapp.MainActivity
 import com.dicoding.picodiploma.kaidahapp.R
 import com.dicoding.picodiploma.kaidahapp.databinding.ActivityDetailBinding
+import com.dicoding.picodiploma.kaidahapp.datahistory.HistoryActivity
+import com.dicoding.picodiploma.kaidahapp.dataregulation.PageRegulationActivity
+import com.dicoding.picodiploma.kaidahapp.datasubject.SubjectSerialized
 import com.dicoding.picodiploma.kaidahapp.retrofit.DataClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,16 +26,22 @@ class DetailActivity : AppCompatActivity() {
         const val EXTRA_DATA = "extra_data"
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setSupportActionBar(binding.Toolbar)
-        binding.textToolbar.text = "Detail Activity"
+        binding.textToolbar.text = getString(R.string.title_detail)
         val gitId = intent.getIntExtra(EXTRA_DATA, 0)
         addDetailAPI(gitId)
-        backButton()
         setContentView(binding.root)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.action_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
 
     //get Detail Data
     private fun addDetailAPI(id: Int){
@@ -43,6 +54,7 @@ class DetailActivity : AppCompatActivity() {
                 data?.let { getDetailAPI(it) }
 
             }
+
             override fun onFailure(call: Call<List<DetailSerialized>>, t: Throwable) {
                 TODO("Not yet implemented")
             }
@@ -63,38 +75,39 @@ class DetailActivity : AppCompatActivity() {
                 sourceDetail.text = i.sourceDetail
                 type.text = i.type.name
                 status.text = i.status.name
+                fabutton.setOnClickListener {
+                    val a = Intent(Intent.ACTION_VIEW, Uri.parse(i.sourceDetail.toString()))
+                    startActivity(a)
+                }
+                shareToolbar.setOnClickListener {
+                    val shareIntent = Intent().apply {
+                        this.action = Intent.ACTION_SEND
+                        this.putExtra(Intent.EXTRA_TEXT, "Data Yang Anda Butuhkan ${i.sourceDetail}")
+                        this.type = "text/plain"
+                    }
+                    startActivity(shareIntent)
+                }
+
+                history.setOnClickListener {
+                    val e = Intent(this@DetailActivity, HistoryActivity::class.java)
+                    e.putExtra(HistoryActivity.EXTRA_HISTORY, i.id)
+                    startActivity(e)
+                }
             }
         }
     }
 
+
     //untuk option menu
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        menuInflater.inflate(R.menu.action_menu, menu)
-//        return super.onCreateOptionsMenu(menu)
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        if (item.itemId == R.id.share) {
-//            val shareIntent = Intent().apply {
-//                this.action = Intent.ACTION_SEND
-//                this.putExtra(Intent.EXTRA_TEXT, "Share App and Share Love")
-//                this.type = "text/plain"
-//            }
-//            startActivity(shareIntent)
-//        }
-//        if (item.itemId == R.id.transate) {
-//            val languageIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
-//            startActivity(languageIntent)
-//        }
-//        else {
-//            return super.onOptionsItemSelected(item)
-//        }
-//        return true
-//    }
-//
-    private fun backButton() {
-        binding.button3.setOnClickListener {
-            onBackPressed()
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.transate) {
+            val languageIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+            startActivity(languageIntent)
         }
+        else {
+            return super.onOptionsItemSelected(item)
+        }
+        return true
     }
+
 }

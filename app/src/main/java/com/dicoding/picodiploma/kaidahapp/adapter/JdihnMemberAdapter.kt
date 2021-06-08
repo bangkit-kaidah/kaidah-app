@@ -4,40 +4,54 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.picodiploma.kaidahapp.R
 import com.dicoding.picodiploma.kaidahapp.databinding.ItemRvJdhinMemberBinding
+import com.dicoding.picodiploma.kaidahapp.datajdhin.AdapterJdhin
+import com.dicoding.picodiploma.kaidahapp.datajdhin.JdhinSerialized
 import com.dicoding.picodiploma.kaidahapp.entity.JdihnMemberParam
 
-class JdihnMemberAdapter(private val clickListener: (JdihnMemberParam) -> Unit) : RecyclerView.Adapter<JdihnMemberAdapter.memberViewHolder>() {
-    private val mData = ArrayList<JdihnMemberParam>()
+class JdihnMemberAdapter(private var list: ArrayList<JdhinSerialized>): RecyclerView.Adapter<JdihnMemberAdapter.JdhinViewHolder>() {
 
-    fun setData(items: ArrayList<JdihnMemberParam>) {
-        mData.clear()
-        mData.addAll(items)
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setterList(users: ArrayList<JdhinSerialized>) {
+        list.clear()
+        list.addAll(users)
+        notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): memberViewHolder {
-        val mView = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_rv_jdhin_member, viewGroup, false)
-        return memberViewHolder(mView)
+    fun setOnItemClickCallback (onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
     }
 
-    override fun onBindViewHolder(memberViewHolder: memberViewHolder, position: Int) {
-        memberViewHolder.bind(mData[position], clickListener)
+    interface OnItemClickCallback {
+        fun onItemClicked(data: JdhinSerialized)
     }
 
-    override fun getItemCount(): Int = mData.size
 
-    inner class memberViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding = ItemRvJdhinMemberBinding.bind(itemView)
+    inner class JdhinViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        var tvName: TextView = itemView.findViewById(R.id.tv_title)
+        var number: TextView = itemView.findViewById(R.id.numberRegulation)
+        var status: TextView = itemView.findViewById(R.id.statusRegulation)
+        var subject: TextView = itemView.findViewById(R.id.textView2)
+    }
 
-        @SuppressLint("SetTextI18n")
-        fun bind(member: JdihnMemberParam, clickListener: (JdihnMemberParam) -> Unit) {
-            binding.tvJdihnMemberName.text = member.name
-            binding.tvJdihnMemberLeader.text = member.leader
-            binding.tvJdihnMemberInfo.text = member.info
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JdhinViewHolder {
+        val view: View = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_row_data2, parent, false)
+        return JdhinViewHolder(view)
+    }
 
-            itemView.setOnClickListener { clickListener(member)}
-        }
+    override fun onBindViewHolder(holder: JdhinViewHolder, position: Int) {
+        val data = list[position]
+        holder.tvName.text = data.name
+        holder.subject.text = data.url
+        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(list[holder.adapterPosition] )}
+    }
+
+    override fun getItemCount(): Int {
+        return list.size
     }
 }

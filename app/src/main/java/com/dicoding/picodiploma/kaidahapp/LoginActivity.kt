@@ -61,26 +61,29 @@ class LoginActivity : AppCompatActivity() {
                 RetrofitClient.instance.userLogin(email.toString(), password.toString()).enqueue(object: Callback<LoginResponse> {
                     override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                         respond = response.body()?.toString()
-                        Log.d("Teasddd1", response.body()?.message.toString())
+                        Log.d("Teasddd1", response.body().toString())
                         if (!respond.isNullOrEmpty()){
                             Log.d("Teasddd2", respond.toString())
                             var phoneParam: String? = null
                             var addressParam: String? = null
                             var infoParam: String? = null
+                            Log.d("CobaRespond", response.body().toString())
 
-                            phoneParam = response.body()?.userParam!!.phone
-                            addressParam = response.body()?.userParam!!.address
-                            infoParam = response.body()?.userParam!!.info
-                            sharedPreference.save("name", response.body()?.userParam!!.name)
-                            sharedPreference.save("email", response.body()?.userParam!!.email)
+                            phoneParam = response.body()?.user?.phone
+                            addressParam = response.body()?.user?.address
+                            infoParam = response.body()?.user?.info
+                            sharedPreference.save("name", response.body()?.user!!.name)
+                            sharedPreference.save("email", response.body()?.user!!.email)
                             sharedPreference.save("phone", phoneParam)
                             sharedPreference.save("address", addressParam)
                             sharedPreference.save("info", infoParam)
-                            sharedPreference.save("roleId", response.body()?.userParam!!.role_id)
+                            sharedPreference.save("roleId", response.body()?.user!!.role_id)
                             sharedPreference.save("token", response.body()?.token!!)
                             token = response.body()?.token!!
                             sharedPreference.save("password", password.toString())
                             sharedPreference.save("signed", true)
+
+                            Log.d("CobaRespond", response.body().toString())
 
                             val intent = Intent(this@LoginActivity, MainActivity::class.java)
                             startActivity(intent)

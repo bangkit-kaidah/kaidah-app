@@ -166,22 +166,6 @@
                     android:textColor="@color/black"
                     android:hint="Alamat"/>
             </LinearLayout>
-            <LinearLayout
-                android:gravity="center"
-                android:background="@drawable/border_smoke"
-                android:layout_width="300dp"
-                android:padding="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/edInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:inputType="text"
-                    android:background="@color/white"
-                    android:textColor="@color/black"
-                    android:hint="Info"/>
-            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

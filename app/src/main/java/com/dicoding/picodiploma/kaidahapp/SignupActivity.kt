@@ -28,23 +28,18 @@ class SignupActivity : AppCompatActivity() {
         val name = binding.edName.text
         val phone = binding.edPhone.text
         val address = binding.edAddress.text
-        val info = binding.edInfo.text
         val email = binding.edEmail.text
         val password = binding.edPassword.text
         val confirm_password = binding.edConfirmPassword.text
 
         var phoneParam: String? = null
         var addressParam: String? = null
-        var infoParam: String? = null
 
         if (!phone.toString().trim().isEmpty()) {
             phoneParam = phone.toString()
         }
         if (!address.toString().trim().isEmpty()) {
             addressParam = address.toString()
-        }
-        if (!info.toString().trim().isEmpty()) {
-            infoParam = info.toString()
         }
 
         binding.btnNext.setOnClickListener {
@@ -86,7 +81,7 @@ class SignupActivity : AppCompatActivity() {
                 binding.progressBar.visibility = View.VISIBLE
                 binding.tvNoEmail.visibility = View.GONE
 
-                RetrofitClient.instance.userRegister(name.toString(), email.toString(), password.toString(), confirm_password.toString(), phoneParam, addressParam, infoParam).enqueue(object: Callback<RegisterResponse> {
+                RetrofitClient.instance.userRegister(name.toString(), email.toString(), password.toString(), confirm_password.toString(), phoneParam, addressParam, null).enqueue(object: Callback<RegisterResponse> {
                     override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
                         respond = response.body()?.toString()
                         if (!respond.isNullOrEmpty()) {

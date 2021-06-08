@@ -1,5 +1,6 @@
 package com.dicoding.picodiploma.kaidahapp.dataregulation
 
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class DataSerialized(
@@ -11,6 +12,7 @@ data class DataSerialized(
     @SerializedName("nomor_peraturan")
     val numberRegulation: String,
 
+    @SerializedName("status")
     val status: DataId,
 
     val subject: DataSubject
@@ -18,11 +20,11 @@ data class DataSerialized(
 
 
 data class DataId(
-    val id: String,
-    val name: String
+    val id: Int,
+    var name: String
 )
 
 data class DataSubject(
-    val id: String,
+    val id: Int,
     val name: String
 )

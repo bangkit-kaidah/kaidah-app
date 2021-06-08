@@ -1,11 +1,11 @@
 package com.dicoding.picodiploma.kaidahapp.entity
 
 data class  UserParam(
-    val id: Int,
-    val name: String,
-    val email: String,
-    val role_id: Int,
-    val phone: String,
-    val address: String,
-    val info: String
+    var id: Int,
+    var name: String,
+    var email: String,
+    var role_id: Int,
+    var phone: String? = null,
+    var address: String? = null,
+    var info: String? = null
 )

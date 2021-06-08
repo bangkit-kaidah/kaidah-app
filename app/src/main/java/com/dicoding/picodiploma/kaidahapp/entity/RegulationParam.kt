@@ -1,18 +1,18 @@
 package com.dicoding.picodiploma.kaidahapp.entity
 
-class RegulationParam (
-    val id : Int,
-    val judul_dokumen: String,
-    val status: DataId,
-    val subject: DataSubject
+data class RegulationParam (
+    var id : Int? = 0,
+    var judul_dokumen: String? = null,
+    var status: DataId? = null,
+    var subject: DataSubject? = null
 )
 
 data class DataId(
-    val id: Int,
-    val name: String
+    val id: Int? = 0,
+    val name: String? = null
 )
 
 data class DataSubject(
-    val id: Int,
-    val name: String
+    val id: Int? = 0,
+    val name: String? = null
 )

@@ -4,81 +4,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="14dp"
-    android:layout_marginTop="7dp"
-    android:layout_marginEnd="14dp"
-    android:layout_marginBottom="7dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="10dp"
     app:cardCornerRadius="10dp"
     app:cardElevation="10dp"
     app:strokeColor="@color/material_on_surface_stroke"
     app:strokeWidth="1dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="15dp">
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/numberRegulation"
+            android:id="@+id/tvSubjectName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:textStyle="bold|italic"
-            android:text="101/CAB/2021"
-            android:textSize="17sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="341dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginStart="20dp"
-            android:text="KKKKKKKKKKKK"
-            android:textColor="@color/teal_200"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/numberRegulation" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
             android:textSize="15sp"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title"
-            app:layout_constraintVertical_bias="1.0" />
+            android:text="Subject"
+            android:textColor="@color/black"/>
 
         <TextView
-            android:id="@+id/statusRegulation"
-            android:layout_width="100dp"
+            android:id="@+id/tvRegulationName"
+            android:layout_below="@id/tvSubjectName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="36dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/background_text"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title"
-            app:layout_constraintVertical_bias="1.0" />
+            android:layout_centerInParent="true"
+            android:text="Namanya"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvStatusRegulation"
+            android:layout_below="@+id/tvRegulationName"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@color/donker"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:text="Status"
+            android:textColor="@color/white"/>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
 

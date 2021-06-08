@@ -8,7 +8,7 @@ import com.dicoding.picodiploma.kaidahapp.R
 import com.dicoding.picodiploma.kaidahapp.databinding.ItemRvSubjectBinding
 import com.dicoding.picodiploma.kaidahapp.entity.FeaturedSubjectsResponse
 
-class SubjectAdapter(private var clickListener: (FeaturedSubjectsResponse) -> Unit) : RecyclerView.Adapter<SubjectAdapter.subjectViewHolder>() {
+class TopSubjectAdapter(private var clickListener: (FeaturedSubjectsResponse) -> Unit) : RecyclerView.Adapter<TopSubjectAdapter.subjectViewHolder>() {
 
     private val sData = ArrayList<FeaturedSubjectsResponse>()
 

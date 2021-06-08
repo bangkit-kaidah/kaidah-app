@@ -67,26 +67,26 @@ class JdhinActivity : AppCompatActivity() {
 
     //for search
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        menuInflater.inflate(R.menu.search_menu, menu)
-//        val manager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-//        val search = menu.findItem(R.id.search)
-//        val searchV = search?.actionView as SearchView
-//
-//        searchV.setSearchableInfo(manager.getSearchableInfo(componentName))
-//        searchV.queryHint = "Masukkan Data"
-//        searchV.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//
-//            override fun onQueryTextSubmit(query: String): Boolean {
-//                getSearchJdhin(query)
-//                searchV.clearFocus()
-//                return true
-//            }
-//
-//            override fun onQueryTextChange(newText: String): Boolean {
-//                getSearchJdhin(newText)
-//                return false
-//            }
-//        })
+        menuInflater.inflate(R.menu.search_menu, menu)
+        val manager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val search = menu.findItem(R.id.search)
+        val searchV = search?.actionView as SearchView
+
+        searchV.setSearchableInfo(manager.getSearchableInfo(componentName))
+        searchV.queryHint = "Masukkan Data"
+        searchV.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                getSearchJdhin(query)
+                searchV.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                getSearchJdhin(newText)
+                return false
+            }
+        })
         return true
     }
 

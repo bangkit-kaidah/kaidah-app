@@ -12,7 +12,6 @@ class AdapterRetrofit2(private var list: ArrayList<DataSerialized>): RecyclerVie
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setterList(users: ArrayList<DataSerialized>) {
-        list.clear()
         list.addAll(users)
         notifyDataSetChanged()
     }
@@ -42,7 +41,7 @@ class AdapterRetrofit2(private var list: ArrayList<DataSerialized>): RecyclerVie
     override fun onBindViewHolder(holder: RetrofitViewHolder, position: Int) {
         val github = list[position]
         holder.tvName.text = github.title
-        holder.number.text = github.numberRegulation
+        holder.number.text = "No. ${github.numberRegulation}"
         holder.status.text = github.status.name
         holder.subject.text = github.subject.name
         holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(list[holder.adapterPosition])}
@@ -50,5 +49,10 @@ class AdapterRetrofit2(private var list: ArrayList<DataSerialized>): RecyclerVie
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    fun clear(){
+        list.clear()
+        notifyDataSetChanged()
     }
 }

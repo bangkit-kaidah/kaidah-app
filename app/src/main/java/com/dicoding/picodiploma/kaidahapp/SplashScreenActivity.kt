@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.widget.Toast
-import com.dicoding.picodiploma.kaidahapp.adapter.SubjectAdapter
+import com.dicoding.picodiploma.kaidahapp.adapter.TopSubjectAdapter
 import com.dicoding.picodiploma.kaidahapp.api.RetrofitClient
 import com.dicoding.picodiploma.kaidahapp.databinding.ActivitySplashScreenBinding
 import com.dicoding.picodiploma.kaidahapp.entity.FeaturedSubjectsResponse
@@ -18,7 +18,7 @@ import retrofit2.Response
 
 class SplashScreenActivity : AppCompatActivity() {
     private var timeOut:Long = 3000
-    private lateinit var adapter: SubjectAdapter
+    private lateinit var adapterTop: TopSubjectAdapter
     private lateinit var binding: ActivitySplashScreenBinding
 
     companion object {
@@ -76,6 +76,10 @@ class SplashScreenActivity : AppCompatActivity() {
                         response.body()?.data?.get(i)?.let { dataTopRegulation.add(it) }
                         response.body()?.data?.get(i)?.let { Log.e("namenya", ""+it.judul_dokumen) };
                     }
+                    val param = RegulationParam()
+                    param.id = -1
+                    param.judul_dokumen = "Tampilkan Semua"
+                    dataTopRegulation.add(param)
                     Log.d("test", respond.toString())
                     Log.d("test", dataTopRegulation.toString())
                 } else {

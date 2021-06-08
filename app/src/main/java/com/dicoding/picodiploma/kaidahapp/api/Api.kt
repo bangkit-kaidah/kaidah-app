@@ -26,6 +26,15 @@ interface Api {
         @Field("info") info: String?,
     ): Call<RegisterResponse>
 
+    @FormUrlEncoded
+    @PUT("/api/v1/profile")
+    fun userEditProfile(
+        @Field("name") name: String,
+        @Field("phone") phone: String?,
+        @Field("address") address: String?,
+        @Field("info") info: String?,
+    ): Call<ProfileResponse>
+
     @GET("/api/v1/profile")
     fun userProfile(): Call<ProfileResponse>
 

@@ -2,20 +2,29 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dicoding.picodiploma.kaidahapp">
 
+    <uses-feature android:name="android.hardware.screen.portrait" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
         android:screenOrientation="portrait"
+        android:supportsRtl="true"
         android:theme="@style/MyTheme">
-        <activity android:name=".LoginActivity"/>
+        <activity android:name=".EditProfileActivity"/>
+        <activity android:name=".LoginActivity" />
         <activity android:name=".PremiumActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".MemberDetailActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".datadetail.DetailActivity" />
+        <activity android:name=".dataregulation.PageRegulationActivity" />
+        <activity android:name=".datahistory.HistoryActivity" />
+        <activity android:name=".datajdhin.JdhinActivity" />
+        <activity android:name=".datasubject.SubjectSerializedActivity" />
+        <activity android:name=".datalistregulationJdhin.DetailJdhinActivity" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +33,5 @@
             </intent-filter>
         </activity>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
