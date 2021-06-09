@@ -21,6 +21,9 @@ interface DataApi {
     fun getDataSpecial(@Query("subject") dataID: Int): Call<SpecialSerialized>
 
     @GET("api/v1/documents")
+    fun getDataAll(): Call<SpecialSerialized>
+
+    @GET("api/v1/documents")
     fun getDataRegulationSecondary(
         @Query("subject") dataID: Int,
         @Query("page") data: Int
@@ -60,7 +63,7 @@ interface DataApi {
     @GET("api/v1/documents/{id}")
     fun getDataHistory(@Path("id") dataID: Int): Call<List<DetailSerialized>>
 
-    //get next data with link
+
 
 
 }

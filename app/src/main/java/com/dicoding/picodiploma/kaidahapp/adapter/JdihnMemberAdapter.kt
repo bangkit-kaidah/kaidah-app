@@ -33,8 +33,6 @@ class JdihnMemberAdapter(private var list: ArrayList<JdhinSerialized>): Recycler
 
     inner class JdhinViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         var tvName: TextView = itemView.findViewById(R.id.tv_title)
-        var number: TextView = itemView.findViewById(R.id.numberRegulation)
-        var status: TextView = itemView.findViewById(R.id.statusRegulation)
         var subject: TextView = itemView.findViewById(R.id.textView2)
     }
 

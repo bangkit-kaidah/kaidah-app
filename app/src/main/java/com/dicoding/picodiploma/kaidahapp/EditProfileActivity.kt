@@ -1,5 +1,6 @@
 package com.dicoding.picodiploma.kaidahapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -25,36 +26,55 @@ class EditProfileActivity : AppCompatActivity() {
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val name = binding.edName.text
-        val phone = binding.edPhone.text
-        val address = binding.edAddress.text
+        sharedPreference = SharedPreference(this)
+
+        val nameShared = sharedPreference.getValueString("name")
+        val phoneShared = sharedPreference.getValueString("phone")
+        val addressShared = sharedPreference.getValueString("address")
+
+
+        val name = binding.edName
+        val phone = binding.edPhone
+        val address = binding.edAddress
+
+        name.setText(nameShared)
+        phone.setText(phoneShared)
+        address.setText(addressShared)
 
         var phoneParam: String? = null
         var addressParam: String? = null
 
-        if (!phone.toString().trim().isEmpty()) {
-            phoneParam = phone.toString()
-        }
-        if (!address.toString().trim().isEmpty()) {
-            addressParam = address.toString()
-        }
-
         var respond: String? = null
         binding.btnEditProfile.setOnClickListener {
-            if (name.toString().trim().isEmpty()) {
+            if (phone.text.isNotEmpty()) {
+                phoneParam = phone.text.toString()
+            }
+            if (address.text.isNotEmpty()) {
+                addressParam = address.text.toString()
+            }
+
+            if (name.text.trim().isEmpty()) {
                 binding.edName.error = "Field ini tidak boleh kosong"
             }
-            if (name.toString().trim().isNotEmpty()) {
+            if (name.text.trim().isNotEmpty()) {
                 binding.btnEditProfile.visibility = View.GONE
                 binding.progressBar.visibility = View.VISIBLE
-                RetrofitClient.instance.userEditProfile(name.toString(), phoneParam, addressParam, null).enqueue(object: Callback<ProfileResponse> {
+                RetrofitClient.instanceUser.userEditProfile(name.text.toString(), phoneParam, addressParam).enqueue(object: Callback<ProfileResponse> {
                     override fun onResponse(call: Call<ProfileResponse>, response: Response<ProfileResponse>) {
                         respond = response.body()?.toString()
+                        response.errorBody()?.string()?.let { it1 -> Log.d("cobacoba1", it1) }
                         if (!respond.isNullOrEmpty()) {
+                            sharedPreference.save("name", response.body()?.name)
+                            sharedPreference.save("email", response.body()?.email)
+                            sharedPreference.save("phone", phoneParam)
+                            sharedPreference.save("address", addressParam)
+                            sharedPreference.save("roleId", response.body()?.role_id!!)
                             binding.btnEditProfile.visibility = View.VISIBLE
                             binding.progressBar.visibility = View.GONE
-                            Log.d("cobacoba2", respond.toString())
-                            Toast.makeText(this@EditProfileActivity, "Berhasil Mendaftar", Toast.LENGTH_SHORT).show()
+                            this@EditProfileActivity.finish()
+                            val intent = Intent(this@EditProfileActivity, MainActivity::class.java)
+                            startActivity(intent)
+                            Log.d("cobacoba2", response.body().toString())
                         } else {
                             Log.d("cobacoba3", respond.toString())
                             binding.btnEditProfile.visibility = View.VISIBLE

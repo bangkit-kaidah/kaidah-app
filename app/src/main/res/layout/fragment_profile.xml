@@ -24,6 +24,10 @@
                     <ImageView android:layout_width="30dp" android:layout_height="30dp" android:src="@drawable/premium"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Premium" android:textColor="@color/black" android:textSize="18sp" android:layout_marginStart="10dp"/>
                 </LinearLayout>
+                <LinearLayout android:id="@+id/btnFollowedMember" android:layout_below="@+id/btnChangePremium" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:layout_marginStart="20dp" android:layout_marginEnd="20dp" android:layout_marginTop="20dp" android:orientation="horizontal">
+                    <ImageView android:layout_width="30dp" android:layout_height="30dp" android:src="@drawable/favorited"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Anggota JDHIN Yang Diikuti" android:textColor="@color/black" android:textSize="18sp" android:layout_marginStart="10dp"/>
+                </LinearLayout>
 
                 <LinearLayout android:layout_width="match_parent" android:layout_height="3dp" android:layout_above="@+id/btnSignout" android:background="@color/donker"/>
                 <LinearLayout android:id="@+id/btnSignout" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:layout_alignParentBottom="true" android:padding="20dp" android:orientation="horizontal">

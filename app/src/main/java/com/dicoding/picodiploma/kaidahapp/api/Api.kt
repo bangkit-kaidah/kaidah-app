@@ -1,5 +1,7 @@
 package com.dicoding.picodiploma.kaidahapp.api
 
+import com.dicoding.picodiploma.kaidahapp.datajdhin.JdhinSerialized
+import com.dicoding.picodiploma.kaidahapp.datalistregulationJdhin.FollowResponse
 import com.dicoding.picodiploma.kaidahapp.entity.*
 import retrofit2.Call
 import com.dicoding.picodiploma.kaidahapp.helper.SharedPreference
@@ -26,13 +28,13 @@ interface Api {
         @Field("info") info: String?,
     ): Call<RegisterResponse>
 
+
     @FormUrlEncoded
-    @PUT("/api/v1/profile")
+    @POST("/api/v1/profile")
     fun userEditProfile(
-        @Field("name") name: String,
-        @Field("phone") phone: String?,
-        @Field("address") address: String?,
-        @Field("info") info: String?,
+            @Field("name") name: String,
+            @Field("phone") phone: String?,
+            @Field("address") address: String?
     ): Call<ProfileResponse>
 
     @GET("/api/v1/profile")
@@ -43,4 +45,20 @@ interface Api {
 
     @GET("/api/v1/documents")
     fun topRegulations(): Call<TopRegulationsResponse>
+
+    @POST("/api/v1/profile/activate")
+    fun upToPremium(): Call<PremiumResponse>
+
+    @FormUrlEncoded
+    @POST(" /api/v1/sources/users")
+    fun userFollow(@Field("source_id")dataId: Int): Call<FollowResponse>
+    @DELETE(" /api/v1/sources/users")
+    fun deleteUserFollow(@Query("source_id")dataId: Int): Call<FollowResponse>
+
+    @GET(" /api/v1/profile/sources")
+    fun userFollowed(): Call<ArrayList<JdhinSerialized>>
+
+    @GET("api/v1/sources")
+    fun getDataJdhin(): Call<ArrayList<JdhinSerialized>>
+
 }

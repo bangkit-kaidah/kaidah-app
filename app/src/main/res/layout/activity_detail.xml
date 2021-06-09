@@ -132,7 +132,9 @@
                 android:id="@+id/kind_regulation"
                 style="@style/textViewDetail"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:linksClickable="true"/>
 
             <View
                 style="@style/view"
@@ -247,20 +249,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/history" />
 
-            <Button
-                android:id="@+id/history"
-                android:layout_marginStart="10dp"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:text="find"
-                android:background="@drawable/shapehistory"
-                />
-
-            <View
-                style="@style/view"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_history123"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="20sp"/>
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 

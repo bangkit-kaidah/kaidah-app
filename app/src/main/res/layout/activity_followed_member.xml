@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.SubjectFragment">
+    tools:context=".FollowedMemberActivity">
 
     <LinearLayout
         android:id="@+id/head"
@@ -25,8 +26,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Subject"
+                android:text="Anggota JDHIN"
                 android:textColor="@color/white"
+                android:id="@+id/tvMemberName"
                 android:textStyle="bold"
                 android:textSize="18sp"/>
             <LinearLayout
@@ -35,35 +37,12 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/green_live"/>
         </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:background="@color/donker"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/edCariSubject"
-                android:inputType="text"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginStart="145dp"
-                android:textSize="12sp"
-                android:imeOptions="actionSearch"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:backgroundTint="@color/white"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:hint="Cari Subject"/>
-        </LinearLayout>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/head"
-        android:background="#EAEAEA"
-        android:id="@+id/rv_subject"/>
+        android:id="@+id/rvJdihnMember"/>
 
 </RelativeLayout>

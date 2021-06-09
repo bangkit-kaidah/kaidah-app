@@ -40,13 +40,14 @@
             android:background="@color/donker"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/edCariMember"
                 android:inputType="text"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
+                android:layout_marginStart="145dp"
                 android:textSize="12sp"
                 android:imeOptions="actionSearch"
                 android:textColor="@color/white"

@@ -31,17 +31,17 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.frame_fragment, fragOne, "FragmentHome")
             commit()
         }
-        binding.ivHome.setImageResource(R.drawable.home_2)
+        binding.ivHome.setImageResource(R.drawable.home_active)
 
         binding.fHome.setOnClickListener {
             supportFragmentManager.beginTransaction().apply {
                 replace(R.id.frame_fragment, fragOne, "FragmentHome")
                 commit()
             }
-            binding.ivHome.setImageResource(R.drawable.home_2)
-            binding.ivCategory.setImageResource(R.drawable.maintenance_1)
-            binding.ivFollowed.setImageResource(R.drawable.admin_1)
-            binding.ivProfile.setImageResource(R.drawable.profile_1)
+            binding.ivHome.setImageResource(R.drawable.home_active)
+            binding.ivCategory.setImageResource(R.drawable.subject)
+            binding.ivFollowed.setImageResource(R.drawable.source)
+            binding.ivProfile.setImageResource(R.drawable.profile)
         }
 
         binding.fCategory.setOnClickListener {
@@ -49,10 +49,10 @@ class MainActivity : AppCompatActivity() {
                 replace(R.id.frame_fragment, fragFive, "SubjectHome")
                 commit()
             }
-            binding.ivHome.setImageResource(R.drawable.home_1)
-            binding.ivCategory.setImageResource(R.drawable.maintenance_2)
-            binding.ivFollowed.setImageResource(R.drawable.admin_1)
-            binding.ivProfile.setImageResource(R.drawable.profile_1)
+            binding.ivHome.setImageResource(R.drawable.home)
+            binding.ivCategory.setImageResource(R.drawable.subject_active)
+            binding.ivFollowed.setImageResource(R.drawable.source)
+            binding.ivProfile.setImageResource(R.drawable.profile)
         }
 
         binding.fFollowed.setOnClickListener {
@@ -60,10 +60,10 @@ class MainActivity : AppCompatActivity() {
                 replace(R.id.frame_fragment, fragTwo, "FragmentFollowed")
                 commit()
             }
-            binding.ivHome.setImageResource(R.drawable.home_1)
-            binding.ivCategory.setImageResource(R.drawable.maintenance_1)
-            binding.ivFollowed.setImageResource(R.drawable.admin_2)
-            binding.ivProfile.setImageResource(R.drawable.profile_1)
+            binding.ivHome.setImageResource(R.drawable.home)
+            binding.ivCategory.setImageResource(R.drawable.subject)
+            binding.ivFollowed.setImageResource(R.drawable.source_active)
+            binding.ivProfile.setImageResource(R.drawable.profile)
         }
 
         binding.fProfile.setOnClickListener {
@@ -76,19 +76,19 @@ class MainActivity : AppCompatActivity() {
                 }
                 commit()
             }
-            binding.ivHome.setImageResource(R.drawable.home_1)
-            binding.ivCategory.setImageResource(R.drawable.maintenance_1)
-            binding.ivFollowed.setImageResource(R.drawable.admin_1)
-            binding.ivProfile.setImageResource(R.drawable.profile_2)
+            binding.ivHome.setImageResource(R.drawable.home)
+            binding.ivCategory.setImageResource(R.drawable.subject)
+            binding.ivFollowed.setImageResource(R.drawable.source)
+            binding.ivProfile.setImageResource(R.drawable.profile_active)
         }
     }
 
     override fun onBackPressed() {
         AlertDialog.Builder(this@MainActivity).setTitle("Keluar Aplikasi").setMessage("Apakah anda ingin menutup aplikasi?").setPositiveButton(R.string.ya) {
-            _, _ -> super.onBackPressed()
+                _, _ -> super.onBackPressed()
             finishAffinity()
         } .setNegativeButton(R.string.tidak) {
-            _, _ -> //Close
+                _, _ -> //Close
         } .show()
     }
 

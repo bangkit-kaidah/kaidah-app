@@ -14,14 +14,15 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.AlphaAnimation
 import android.view.animation.AnimationSet
 import android.view.animation.DecelerateInterpolator
+import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.dicoding.picodiploma.kaidahapp.EditProfileActivity
-import com.dicoding.picodiploma.kaidahapp.LoginActivity
-import com.dicoding.picodiploma.kaidahapp.PremiumActivity
-import com.dicoding.picodiploma.kaidahapp.R
+import com.dicoding.picodiploma.kaidahapp.*
 import com.dicoding.picodiploma.kaidahapp.api.RetrofitClient
 import com.dicoding.picodiploma.kaidahapp.databinding.FragmentProfileBinding
+import com.dicoding.picodiploma.kaidahapp.datalistregulationJdhin.DetailJdhinActivity
 import com.dicoding.picodiploma.kaidahapp.entity.LoginResponse
+import com.dicoding.picodiploma.kaidahapp.entity.PremiumResponse
 import com.dicoding.picodiploma.kaidahapp.entity.ProfileResponse
 import com.dicoding.picodiploma.kaidahapp.helper.SharedPreference
 import okhttp3.internal.notify
@@ -53,7 +54,13 @@ class ProfileFragment : Fragment() {
         binding.edPhone.setText(phone)
         binding.edAddress.setText(address)
         if (roleId == 2) {
-            binding.tvUserRole.text = roleId.toString()
+            binding.tvUserRole.text = "Premium"
+            binding.tvName.text = name
+            binding.tvInfo.text = info
+            binding.edName.setText(name)
+            binding.edEmail.setText(email)
+            binding.edPhone.setText(phone)
+            binding.edAddress.setText(address)
         }
 
         Log.d("ProfileFound", "Nama: ${name}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${address}\nInfo: ${info}\nRoleID: ${roleId}")
@@ -68,8 +75,23 @@ class ProfileFragment : Fragment() {
             } .show()
         }
 
+        binding.btnChangePremium.setOnClickListener {
+            AlertDialog.Builder(requireContext()).setTitle("Premium Fitur").setMessage("Apakah anda ingin berganti menjadi user premium?(Uji Coba)").setPositiveButton(R.string.ya) {
+                _, _ ->
+                upToPremium()
+                Toast.makeText(requireContext(), "Akun Anda Premium Sekarang", Toast.LENGTH_SHORT).show()
+            } .setNegativeButton(R.string.tidak) {
+                _, _ ->
+            } .show()
+        }
+
         binding.btnEditProfile.setOnClickListener {
             val intent = Intent(requireActivity(), EditProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnFollowedMember.setOnClickListener {
+            val intent = Intent(requireActivity(), FollowedMemberActivity::class.java)
             startActivity(intent)
         }
 
@@ -115,5 +137,30 @@ class ProfileFragment : Fragment() {
         }
         valueAnimator.start()
         fade.animate().alpha(1f).setDuration(100);
+    }
+
+    private fun upToPremium() {
+        sharedPreference = SharedPreference(requireContext())
+        var respond: String? = null
+        RetrofitClient.instanceUser.upToPremium().enqueue(object: Callback<PremiumResponse> {
+            override fun onResponse(call: Call<PremiumResponse>, response: Response<PremiumResponse>) {
+                respond = response.body()?.toString()
+                Log.d("cobacoba1", respond.toString())
+                Log.d("cobacoba1", response.body().toString())
+                response.errorBody()?.let { Log.d("cobacoba1", it.string()) }
+                if (!response.body().toString().isNullOrEmpty()) {
+                    Log.d("cobacoba2", response.body().toString())
+                    response.body()?.let { sharedPreference.save("roleId", it.role_id) }
+                    activity?.finish()
+                    startActivity(activity?.intent)
+                }
+                if (response.body().toString().isNullOrEmpty()) {
+                    Log.d("cobacoba3", respond.toString())
+                }
+            }
+            override fun onFailure(call: Call<PremiumResponse>, t: Throwable) {
+                Toast.makeText(context, t.message, Toast.LENGTH_LONG).show()
+            }
+        })
     }
 }

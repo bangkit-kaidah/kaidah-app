@@ -3,14 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/smoke"
     tools:context=".fragment.HomeFragment">
-
-<!--    <RelativeLayout android:id="@+id/title" android:layout_width="match_parent" android:layout_height="70dp" android:background="@color/white">-->
-<!--        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:textSize="25sp" android:textStyle="bold" android:layout_marginStart="20dp" android:textColor="@color/black" android:fontFamily="monospace" android:text="KAIDAH"/>-->
-<!--        <ImageView android:layout_width="25dp" android:layout_height="25dp" android:id="@+id/ivSetting" android:layout_centerVertical="true" android:layout_alignParentEnd="true" android:layout_marginEnd="20dp" android:src="@drawable/information"/>-->
-<!--    </RelativeLayout>-->
-<!--    <RelativeLayout android:layout_width="match_parent" android:layout_height="3dp" android:id="@+id/garis" android:background="@color/donker" android:layout_below="@+id/title"/>-->
 
     <RelativeLayout android:id="@+id/head" android:background="#003568" android:layout_width="match_parent" android:layout_height="wrap_content">
         <RelativeLayout android:id="@+id/titleBar" android:layout_margin="20dp" android:layout_width="match_parent" android:layout_height="wrap_content">
@@ -23,7 +16,8 @@
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView android:layout_below="@+id/head" android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true">
-        <RelativeLayout android:id="@+id/space" android:layout_width="match_parent" android:layout_height="match_parent">
+
+        <RelativeLayout android:id="@+id/space" android:layout_width="match_parent" android:layout_height="match_parent" android:paddingBottom="20dp">
 
             <TextView
                 android:text="Subjek Teratas"
@@ -71,13 +65,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
                 android:orientation="vertical"
                 android:background="@color/white">
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvNewRegulation"
+                    android:nestedScrollingEnabled="false"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:fadeScrollbars="true"/>
             </LinearLayout>
 
 <!--            <LinearLayout-->

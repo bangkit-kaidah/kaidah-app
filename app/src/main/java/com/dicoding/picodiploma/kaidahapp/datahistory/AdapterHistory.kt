@@ -1,5 +1,6 @@
 package com.dicoding.picodiploma.kaidahapp.datahistory
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.picodiploma.kaidahapp.R
 import com.dicoding.picodiploma.kaidahapp.datadetail.DataHistory
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 class AdapterHistory(private var list: ArrayList<DataHistory>): RecyclerView.Adapter<AdapterHistory.HistoryViewHolder>() {
 
@@ -42,7 +46,16 @@ class AdapterHistory(private var list: ArrayList<DataHistory>): RecyclerView.Ada
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         val data = list[position]
         holder.tvName.text = data.titleDoc
-        holder.subject.text = data.dateDoc
+
+        val firstApiFormat = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
+        val date = LocalDate.parse(data.dateDoc, firstApiFormat)
+        val human_readable = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG))
+
+        holder.subject.text = human_readable
         holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(list[holder.adapterPosition]) }
     }
 

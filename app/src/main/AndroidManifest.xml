@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dicoding.picodiploma.kaidahapp">
 
-    <uses-feature android:name="android.hardware.screen.portrait" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
@@ -13,7 +10,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/MyTheme">
-        <activity android:name=".EditProfileActivity"/>
+        <activity android:name=".FollowedMemberActivity"></activity>
+        <activity android:name=".EditProfileActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".PremiumActivity" />
         <activity android:name=".SignupActivity" />
@@ -33,5 +31,9 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-feature android:name="android.hardware.screen.portrait" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

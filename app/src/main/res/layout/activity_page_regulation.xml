@@ -11,7 +11,7 @@
         android:id="@+id/tolbar3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_title">
+        android:background="@color/donker">
 
         <TextView
             android:id="@+id/textToolbar2"

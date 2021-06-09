@@ -31,7 +31,7 @@ class AdapterSubject(private var list: ArrayList<SubjectSerialized>): RecyclerVi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubjectViewHolder {
         val view: View = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_row_data, parent, false)
+            .inflate(R.layout.item_row_subject, parent, false)
         return SubjectViewHolder(view)
     }
 

@@ -2,6 +2,7 @@ package com.dicoding.picodiploma.kaidahapp.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import com.dicoding.picodiploma.kaidahapp.adapter.RegulationAdapter
 import com.dicoding.picodiploma.kaidahapp.adapter.TopSubjectAdapter
 import com.dicoding.picodiploma.kaidahapp.databinding.ActivityMainBinding
 import com.dicoding.picodiploma.kaidahapp.databinding.FragmentHomeBinding
+import com.dicoding.picodiploma.kaidahapp.datadetail.DetailActivity
 import com.dicoding.picodiploma.kaidahapp.dataregulation.PageRegulationActivity
 import com.dicoding.picodiploma.kaidahapp.entity.FeaturedSubjectsResponse
 import com.dicoding.picodiploma.kaidahapp.entity.RegulationParam
@@ -60,7 +62,6 @@ class HomeFragment() : Fragment() {
     }
 
     private fun partItemClickedSubject(subject : FeaturedSubjectsResponse) {
-        Toast.makeText(context, "${subject.name} Clicked", Toast.LENGTH_SHORT).show()
         if (subject.subject_id == -1){
             val frame = activity?.findViewById<FrameLayout>(R.id.frame_fragment)
             val homeImage = requireActivity().findViewById<ImageView>(R.id.ivHome)
@@ -70,8 +71,8 @@ class HomeFragment() : Fragment() {
                 frame?.let { replace(it.id, fragment) }
                 commit()
             }
-            homeImage.setImageResource(R.drawable.home_1)
-            subjectImage.setImageResource(R.drawable.maintenance_2)
+            homeImage.setImageResource(R.drawable.home)
+            subjectImage.setImageResource(R.drawable.subject_active)
         }
         if (subject.subject_id != -1) {
             val intent = Intent(requireActivity(), PageRegulationActivity::class.java)
@@ -81,18 +82,15 @@ class HomeFragment() : Fragment() {
     }
 
     private fun partItemClickedRegulation(regulation : RegulationParam) {
-        Toast.makeText(context, "${regulation.judul_dokumen} Clicked", Toast.LENGTH_SHORT).show()
-//        if (regulation.id == -1){
-//            val frame = activity?.findViewById<FrameLayout>(R.id.frame_fragment)
-//            val homeImage = requireActivity().findViewById<ImageView>(R.id.ivHome)
-//            val memberImage = requireActivity().findViewById<ImageView>(R.id.ivCategory)
-//            val fragment = SubjectFragment()
-//            requireActivity().supportFragmentManager.beginTransaction().apply {
-//                frame?.let { replace(it.id, fragment) }
-//                commit()
-//            }
-//            homeImage.setImageResource(R.drawable.home_1)
-//            subjectImage.setImageResource(R.drawable.maintenance_2)
-//        }
+        if (regulation.id == -1){
+            val intent = Intent(requireActivity(), PageRegulationActivity::class.java)
+            intent.putExtra(PageRegulationActivity.EXTRA, regulation.id)
+            startActivity(intent)
+        }
+        if (regulation.id != -1) {
+            val intent = Intent(requireActivity(), DetailActivity::class.java)
+            intent.putExtra(DetailActivity.EXTRA_DATA, regulation.id)
+            startActivity(intent)
+        }
     }
 }

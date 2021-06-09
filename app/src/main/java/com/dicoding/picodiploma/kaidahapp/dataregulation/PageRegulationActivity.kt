@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.widget.SearchView
@@ -47,11 +48,41 @@ class PageRegulationActivity : AppCompatActivity() {
 
         //addDatafull from API
         val gitId = intent.getIntExtra(EXTRA, 0)
-        addData(gitId)
-        binding.progressBar.visibility = View.GONE
+        Log.d("asdsadasda2", "IDnya: "+gitId)
+        if (gitId != -1) {
+            addData(gitId)
+            binding.progressBar.visibility = View.GONE
+            Log.d("asdsadasda2", "Gagal IDnya: "+gitId)
+        }
+        if (gitId == -1){
+            addDataAll()
+            binding.progressBar.visibility = View.GONE
+            Log.d("asdsadasda2", "Berhasil IDnya: "+gitId)
+        }
         setContentView(binding.root)
     }
 
+    private fun addDataAll() {
+        DataClient.InstanceApi.getDataAll().enqueue(object : Callback<SpecialSerialized> {
+            override fun onResponse(
+                    call: Call<SpecialSerialized>,
+                    response: Response<SpecialSerialized>
+            ) {
+                if (response.isSuccessful) {
+                    val date = response.body()?.data
+                    setRecyclerView()
+                    date?.let { adapterp.setterList(it) }
+                    a()
+                    addAdapterDetail()
+                    binding.progressBar.visibility = View.GONE
+                }
+                binding.progressBar.visibility = View.GONE
+            }
+
+            override fun onFailure(call: Call<SpecialSerialized>, t: Throwable) {
+            }
+        })
+    }
 
     //add Data Full search and mandatory Data
     private fun addData(id: Int) {

@@ -35,12 +35,12 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:id="@+id/ivHome"
-                android:background="@drawable/home_1"/>
+                android:background="@drawable/home"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:textColor="@color/donker"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:text="Beranda"/>
         </LinearLayout>
@@ -55,12 +55,12 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:id="@+id/ivCategory"
-                android:background="@drawable/maintenance_1"/>
+                android:background="@drawable/subject"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:textColor="@color/donker"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:text="Subjek"/>
         </LinearLayout>
@@ -75,12 +75,12 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:id="@+id/ivFollowed"
-                android:background="@drawable/admin_1"/>
+                android:background="@drawable/source"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:textColor="@color/donker"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:text="Member"/>
         </LinearLayout>
@@ -95,12 +95,12 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:id="@+id/ivProfile"
-                android:background="@drawable/profile_1"/>
+                android:background="@drawable/profile"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:textColor="@color/donker"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:text="@string/profil"/>
         </LinearLayout>

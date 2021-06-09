@@ -6,6 +6,6 @@ data class ProfileResponse(
     val email: String,
     val role_id: Int,
     val phone: Int?,
-    val address: Int?,
+    val address: String?,
     val info: String?
 )

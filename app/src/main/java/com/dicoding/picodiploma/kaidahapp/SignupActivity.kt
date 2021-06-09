@@ -25,28 +25,21 @@ class SignupActivity : AppCompatActivity() {
 
         sharedPreference = SharedPreference(this)
 
-        val name = binding.edName.text
-        val phone = binding.edPhone.text
-        val address = binding.edAddress.text
-        val email = binding.edEmail.text
-        val password = binding.edPassword.text
-        val confirm_password = binding.edConfirmPassword.text
+        val name = binding.edName
+        val phone = binding.edPhone
+        val address = binding.edAddress
+        val email = binding.edEmail
+        val password = binding.edPassword
+        val confirm_password = binding.edConfirmPassword
 
         var phoneParam: String? = null
         var addressParam: String? = null
 
-        if (!phone.toString().trim().isEmpty()) {
-            phoneParam = phone.toString()
-        }
-        if (!address.toString().trim().isEmpty()) {
-            addressParam = address.toString()
-        }
-
         binding.btnNext.setOnClickListener {
-            if (name.toString().trim().isEmpty()) {
+            if (name.text.toString().trim().isEmpty()) {
                 binding.edName.error = "Field ini tidak boleh kosong"
             }
-            if (name.toString().trim().isNotEmpty()) {
+            if (name.text.toString().trim().isNotEmpty()) {
                 binding.userData.visibility = View.GONE
                 binding.userAuth.visibility = View.VISIBLE
                 binding.btnNext.visibility = View.GONE
@@ -64,24 +57,32 @@ class SignupActivity : AppCompatActivity() {
 
         var respond: String? = null
         binding.btnSignup.setOnClickListener {
-            if (email.toString().trim().isEmpty()) {
+            if (!phone.text.toString().trim().isEmpty()) {
+                phoneParam = phone.text.toString()
+            }
+            if (!address.text.toString().trim().isEmpty()) {
+                addressParam = address.text.toString()
+            }
+            Log.d("dqwndasidn", "Nomor: ${phoneParam} dan Address: ${addressParam}")
+            Log.d("dqwndasidn", "Nomor: ${phone.text.toString()} dan Address: ${address.text.toString()}")
+            if (email.text.toString().trim().isEmpty()) {
                 binding.edEmail.error = "Field ini tidak boleh kosong"
             }
-            if (password.toString().trim().isEmpty()) {
+            if (password.text.toString().trim().isEmpty()) {
                 binding.edPassword.error = "Field ini tidak boleh kosong"
             }
-            if (confirm_password.toString().trim().isEmpty()) {
+            if (confirm_password.text.toString().trim().isEmpty()) {
                 binding.edConfirmPassword.error = "Field ini tidak boleh kosong"
             }
-            if (password.toString() != confirm_password.toString()) {
+            if (password.text.toString() != confirm_password.text.toString()) {
                 binding.edConfirmPassword.error = "Sandi Konfirmasi Salah"
             }
-            if (email.toString().trim().isNotEmpty() && password.toString().trim().isNotEmpty() && confirm_password.toString().trim().isNotEmpty() && password.toString() == confirm_password.toString()) {
+            if (email.text.toString().trim().isNotEmpty() && password.text.toString().trim().isNotEmpty() && confirm_password.text.toString().trim().isNotEmpty() && password.text.toString() == confirm_password.text.toString()) {
                 binding.btnSignup.visibility = View.GONE
                 binding.progressBar.visibility = View.VISIBLE
                 binding.tvNoEmail.visibility = View.GONE
 
-                RetrofitClient.instance.userRegister(name.toString(), email.toString(), password.toString(), confirm_password.toString(), phoneParam, addressParam, null).enqueue(object: Callback<RegisterResponse> {
+                RetrofitClient.instance.userRegister(name.text.toString(), email.text.toString(), password.text.toString(), confirm_password.text.toString(), phoneParam, addressParam, null).enqueue(object: Callback<RegisterResponse> {
                     override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
                         respond = response.body()?.toString()
                         if (!respond.isNullOrEmpty()) {

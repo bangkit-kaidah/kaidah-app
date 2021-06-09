@@ -24,12 +24,14 @@ data class DetailSerialized(
     val related: ArrayList<DataHistory>,
 
     val status: StatusData,
+    val subject: SubjectData,
+    val source: SourceData,
     @SerializedName("document_type")
     val type: TypeData
 )
 
 data class DataHistory(
-    val id: String,
+    val id: Int,
     @SerializedName("judul_dokumen")
     val titleDoc: String,
     @SerializedName("tanggal_penetapan")
@@ -42,6 +44,14 @@ data class StatusData(
 
 
 data class TypeData(
+    val name: String
+)
+
+data class SourceData(
+    val name: String
+)
+
+data class SubjectData(
     val name: String
 )
 
