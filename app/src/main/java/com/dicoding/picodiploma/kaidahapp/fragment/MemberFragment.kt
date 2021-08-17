@@ -32,6 +32,7 @@ class MemberFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private var list: ArrayList<JdhinSerialized> = ArrayList()
     private lateinit var sharedPreference: SharedPreference
+    private var isSignedin : Boolean = false
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -42,7 +43,7 @@ class MemberFragment : Fragment() {
         adapter = JdihnMemberAdapter(list)
         recyclerView = binding.rvJdihnMember
 
-        val isSignedin = sharedPreference.getValueBoolien("signed", false)
+        isSignedin = sharedPreference.getValueBoolien("signed", false)
 
         if (isSignedin == true) {
             addDataFromAPIUser()
@@ -60,6 +61,16 @@ class MemberFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (isSignedin) {
+            addDataFromAPIUser()
+        }
+        else {
+            addDataFromAPI()
+        }
     }
 
     private fun addDataFromAPI(){
