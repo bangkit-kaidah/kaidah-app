@@ -57,6 +57,7 @@ class FollowedMemberActivity : AppCompatActivity() {
     private fun showSelectedDate(data: JdhinSerialized) {
         val intent = Intent(this@FollowedMemberActivity, DetailJdhinActivity::class.java)
         intent.putExtra(DetailJdhinActivity.EXTRA_JDHIN, data.id)
+        intent.putExtra(DetailJdhinActivity.SHOW_FAB, false)
         startActivity(intent)
     }
 

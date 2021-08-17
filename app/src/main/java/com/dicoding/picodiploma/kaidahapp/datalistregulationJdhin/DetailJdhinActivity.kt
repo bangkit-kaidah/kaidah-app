@@ -27,6 +27,7 @@ class DetailJdhinActivity : AppCompatActivity() {
         const val EXTRA_JDHIN = "extra_JDHIN"
         var EXTRA_FOLLOWED_JDHIN = "extra_JDHIN_follow"
         var status = false
+        var SHOW_FAB = "show_fab"
     }
 
     private lateinit var sharedPreference: SharedPreference
@@ -59,6 +60,7 @@ class DetailJdhinActivity : AppCompatActivity() {
         getDataFromAPI(gitId)
 
         val gitFollowed: Boolean = intent.getBooleanExtra(EXTRA_FOLLOWED_JDHIN, false)
+        val showFollowButton: Boolean = intent.getBooleanExtra(SHOW_FAB, true)
 
         status = gitFollowed
         statusFav = status
@@ -68,7 +70,7 @@ class DetailJdhinActivity : AppCompatActivity() {
         statusFavorite(statusFav)
         //tambahan
         val id = sharedPreference.getValueInt("roleId")
-        if (id == 0){
+        if (id == 0 || !showFollowButton){
             fab.visibility = View.GONE
         }
         fab.setOnClickListener {
