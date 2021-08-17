@@ -77,6 +77,11 @@ interface Api {
     fun getDataAll(): Call<SpecialSerialized>
 
     @GET("api/v1/documents")
+    fun getDataAllSecondary(
+        @Query("page") data: Int
+    ): Call<SpecialSerialized>
+
+    @GET("api/v1/documents")
     fun getDataRegulationSecondary(
         @Query("subject") dataID: Int,
         @Query("page") data: Int

@@ -167,24 +167,44 @@ class PageRegulationActivity : AppCompatActivity() {
         isLoading = true
         if (isOnRefresh) binding.progressBar.visibility = View.VISIBLE
         val gitId = intent.getIntExtra(EXTRA, 0)
-        RetrofitClient.instance.getDataRegulationSecondary(gitId, page)
-            .enqueue(object : Callback<SpecialSerialized> {
-                override fun onResponse(
-                    call: Call<SpecialSerialized>,
-                    response: Response<SpecialSerialized>
-                ) {
-                    val listRes = response.body()?.data
-                    listRes?.let { adapterp.setterList(it) }
-                    a()
-                    binding.progressBar.visibility = View.GONE
-                    isLoading = false
-                }
+        if (gitId == -1) {
+            RetrofitClient.instance.getDataAllSecondary(page)
+                .enqueue(object : Callback<SpecialSerialized> {
+                    override fun onResponse(
+                        call: Call<SpecialSerialized>,
+                        response: Response<SpecialSerialized>
+                    ) {
+                        val listRes = response.body()?.data
+                        listRes?.let { adapterp.setterList(it) }
+                        a()
+                        binding.progressBar.visibility = View.GONE
+                        isLoading = false
+                    }
 
-                override fun onFailure(call: Call<SpecialSerialized>, t: Throwable) {
-                }
+                    override fun onFailure(call: Call<SpecialSerialized>, t: Throwable) {
+                    }
 
-            })
+                })
+        }
+        else {
+            RetrofitClient.instance.getDataRegulationSecondary(gitId, page)
+                .enqueue(object : Callback<SpecialSerialized> {
+                    override fun onResponse(
+                        call: Call<SpecialSerialized>,
+                        response: Response<SpecialSerialized>
+                    ) {
+                        val listRes = response.body()?.data
+                        listRes?.let { adapterp.setterList(it) }
+                        a()
+                        binding.progressBar.visibility = View.GONE
+                        isLoading = false
+                    }
 
+                    override fun onFailure(call: Call<SpecialSerialized>, t: Throwable) {
+                    }
+
+                })
+        }
     }
 
     private fun getNextSearchPage(isOnRefreshSearch: Boolean, item: String) {
