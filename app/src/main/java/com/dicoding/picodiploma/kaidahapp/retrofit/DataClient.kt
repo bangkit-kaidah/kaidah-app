@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object DataClient {
 
-    private const val MAIN_URL = "https://shaped-crawler-312912.uc.r.appspot.com/"
+    private const val MAIN_URL = "https://kaidah.et.r.appspot.com"
 
     private val retrofitclient = Retrofit.Builder()
         .baseUrl(MAIN_URL)
