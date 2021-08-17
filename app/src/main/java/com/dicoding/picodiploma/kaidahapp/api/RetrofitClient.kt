@@ -2,6 +2,7 @@ package com.dicoding.picodiploma.kaidahapp.api
 
 import android.annotation.SuppressLint
 import com.dicoding.picodiploma.kaidahapp.LoginActivity
+import com.dicoding.picodiploma.kaidahapp.MainActivity
 import com.dicoding.picodiploma.kaidahapp.helper.SharedPreference
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -37,7 +38,7 @@ object RetrofitClient {
             val original = chain.request()
 
             val requestBuilder = original.newBuilder()
-                .method(original.method, original.body).addHeader("Accept", "application/json").addHeader("Authorization", "Bearer ${LoginActivity.token}")
+                .method(original.method, original.body).addHeader("Accept", "application/json").addHeader("Authorization", "Bearer ${MainActivity.token}")
 
             val request = requestBuilder.build()
             chain.proceed(request)

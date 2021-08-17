@@ -12,6 +12,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var sharedPreference: SharedPreference
 
+    companion object {
+        var token = ""
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -20,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         sharedPreference = SharedPreference(this)
         val isSignedin = sharedPreference.getValueBoolien("signed", false)
         val isGuest = sharedPreference.getValueBoolien("guest", false)
+        token = sharedPreference.getValueString("token").toString()
 
         val fragOne = HomeFragment()
         val fragTwo = MemberFragment()
