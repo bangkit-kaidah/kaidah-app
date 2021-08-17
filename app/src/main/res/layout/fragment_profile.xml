@@ -7,7 +7,7 @@
     tools:context=".fragment.ProfileFragment">
 
     <RelativeLayout android:id="@+id/title" android:layout_width="match_parent" android:layout_height="70dp" android:background="@color/white">
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:textSize="25sp" android:textStyle="bold" android:layout_marginStart="20dp" android:textColor="@color/black" android:fontFamily="monospace" android:text="Profile"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:textSize="25sp" android:textStyle="bold" android:layout_marginStart="20dp" android:textColor="@color/black" android:text="Profile"/>
         <ImageView android:layout_width="40dp" android:layout_height="40dp" android:id="@+id/ivSetting" android:layout_centerVertical="true" android:layout_alignParentEnd="true" android:layout_marginEnd="20dp" android:src="@drawable/setting"/>
     </RelativeLayout>
     <RelativeLayout android:layout_width="match_parent" android:layout_height="3dp" android:id="@+id/garis" android:background="@color/donker" android:layout_below="@+id/title"/>

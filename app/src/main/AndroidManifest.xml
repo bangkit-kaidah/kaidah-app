@@ -11,20 +11,20 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/MyTheme">
-        <activity android:name=".FollowedMemberActivity"></activity>
-        <activity android:name=".EditProfileActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".PremiumActivity" />
-        <activity android:name=".SignupActivity" />
-        <activity android:name=".MemberDetailActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".datadetail.DetailActivity" />
-        <activity android:name=".dataregulation.PageRegulationActivity" />
-        <activity android:name=".datahistory.HistoryActivity" />
-        <activity android:name=".datajdhin.JdhinActivity" />
-        <activity android:name=".datasubject.SubjectSerializedActivity" />
-        <activity android:name=".datalistregulationJdhin.DetailJdhinActivity" />
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".FollowedMemberActivity" android:configChanges="orientation" android:screenOrientation="portrait" />
+        <activity android:name=".EditProfileActivity" android:configChanges="orientation" android:screenOrientation="portrait" />
+        <activity android:name=".LoginActivity" android:configChanges="orientation" android:screenOrientation="portrait" />
+        <activity android:name=".PremiumActivity" android:configChanges="orientation" android:screenOrientation="portrait" />
+        <activity android:name=".SignupActivity" android:configChanges="orientation" android:screenOrientation="portrait" />
+        <activity android:name=".MemberDetailActivity" android:configChanges="orientation" android:screenOrientation="portrait" />
+        <activity android:name=".MainActivity" android:configChanges="orientation" android:screenOrientation="portrait" />
+        <activity android:name=".datadetail.DetailActivity" android:configChanges="orientation" android:screenOrientation="portrait" />
+        <activity android:name=".dataregulation.PageRegulationActivity" android:configChanges="orientation" android:screenOrientation="portrait" />
+        <activity android:name=".datahistory.HistoryActivity" android:configChanges="orientation" android:screenOrientation="portrait" />
+        <activity android:name=".datajdhin.JdhinActivity" android:configChanges="orientation" android:screenOrientation="portrait" />
+        <activity android:name=".datasubject.SubjectSerializedActivity" android:configChanges="orientation" android:screenOrientation="portrait" />
+        <activity android:name=".datalistregulationJdhin.DetailJdhinActivity" android:configChanges="orientation" android:screenOrientation="portrait" />
+        <activity android:name=".SplashScreenActivity" android:configChanges="orientation" android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
