@@ -4,13 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Projects/kaidah-app/app/src/main/res/layout/activity_detail.xml" value="0.20520833333333333" />
+        <entry key="..\:/Projects/kaidah-app/app/src/main/res/layout/activity_detail_jdhin.xml" value="0.36666666666666664" />
         <entry key="..\:/Projects/kaidah-app/app/src/main/res/layout/activity_edit_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/Projects/kaidah-app/app/src/main/res/layout/activity_jdhin.xml" value="0.36666666666666664" />
         <entry key="..\:/Projects/kaidah-app/app/src/main/res/layout/activity_member.xml" value="0.20520833333333333" />
         <entry key="..\:/Projects/kaidah-app/app/src/main/res/layout/activity_page_regulation.xml" value="0.20520833333333333" />
         <entry key="..\:/Projects/kaidah-app/app/src/main/res/layout/activity_splash_screen.xml" value="0.2015625" />
         <entry key="..\:/Projects/kaidah-app/app/src/main/res/layout/activity_subject_serialized.xml" value="0.20520833333333333" />
         <entry key="..\:/Projects/kaidah-app/app/src/main/res/layout/fragment_home.xml" value="0.20520833333333333" />
-        <entry key="..\:/Projects/kaidah-app/app/src/main/res/layout/fragment_member.xml" value="0.36666666666666664" />
+        <entry key="..\:/Projects/kaidah-app/app/src/main/res/layout/fragment_member.xml" value="0.33" />
         <entry key="..\:/Projects/kaidah-app/app/src/main/res/layout/fragment_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Projects/kaidah-app/app/src/main/res/layout/fragment_subject.xml" value="0.36666666666666664" />
         <entry key="..\:/Projects/kaidah-app/app/src/main/res/layout/item_row_data.xml" value="0.20520833333333333" />
