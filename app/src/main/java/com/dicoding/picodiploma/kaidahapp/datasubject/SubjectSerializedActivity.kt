@@ -10,9 +10,9 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.picodiploma.kaidahapp.R
+import com.dicoding.picodiploma.kaidahapp.api.RetrofitClient
 import com.dicoding.picodiploma.kaidahapp.dataregulation.PageRegulationActivity
 import com.dicoding.picodiploma.kaidahapp.databinding.ActivitySubjectSerializedBinding
-import com.dicoding.picodiploma.kaidahapp.retrofit.DataClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,7 +38,7 @@ class SubjectSerializedActivity : AppCompatActivity() {
     }
 
     private fun addDataFromAPI(){
-        DataClient.InstanceApi.getDataSubject().enqueue(object : Callback<ArrayList<SubjectSerialized>>{
+        RetrofitClient.instance.getDataSubject().enqueue(object : Callback<ArrayList<SubjectSerialized>>{
             override fun onResponse(
                 call: Call<ArrayList<SubjectSerialized>>,
                 response: Response<ArrayList<SubjectSerialized>>
@@ -91,7 +91,7 @@ class SubjectSerializedActivity : AppCompatActivity() {
     }
 
     private fun getSearchAPI(username: String){
-        DataClient.InstanceApi.getSearchSubject(username).enqueue(object :Callback<ArrayList<SubjectSerialized>>{
+        RetrofitClient.instance.getSearchSubject(username).enqueue(object :Callback<ArrayList<SubjectSerialized>>{
             override fun onResponse(
                 call: Call<ArrayList<SubjectSerialized>>,
                 response: Response<ArrayList<SubjectSerialized>>

@@ -1,7 +1,10 @@
 package com.dicoding.picodiploma.kaidahapp.api
 
+import com.dicoding.picodiploma.kaidahapp.datadetail.DetailSerialized
 import com.dicoding.picodiploma.kaidahapp.datajdhin.JdhinSerialized
 import com.dicoding.picodiploma.kaidahapp.datalistregulationJdhin.FollowResponse
+import com.dicoding.picodiploma.kaidahapp.dataregulation.SpecialSerialized
+import com.dicoding.picodiploma.kaidahapp.datasubject.SubjectSerialized
 import com.dicoding.picodiploma.kaidahapp.entity.*
 import retrofit2.Call
 import com.dicoding.picodiploma.kaidahapp.helper.SharedPreference
@@ -61,4 +64,49 @@ interface Api {
     @GET("api/v1/sources")
     fun getDataJdhin(): Call<ArrayList<JdhinSerialized>>
 
+    @GET("api/v1/subjects")
+    fun getDataSubject(): Call<ArrayList<SubjectSerialized>>
+
+    @GET("api/v1/documents/{id}")
+    fun getDetail(@Path("id") dataID: Int): Call<List<DetailSerialized>>
+
+    @GET("api/v1/documents")
+    fun getDataSpecial(@Query("subject") dataID: Int): Call<SpecialSerialized>
+
+    @GET("api/v1/documents")
+    fun getDataAll(): Call<SpecialSerialized>
+
+    @GET("api/v1/documents")
+    fun getDataRegulationSecondary(
+        @Query("subject") dataID: Int,
+        @Query("page") data: Int
+    ): Call<SpecialSerialized>
+
+    @GET("api/v1/documents")
+    fun getDataSearchSecondary(
+        @Query("search") dataID: String,
+        @Query("page") data: Int
+    ): Call<SpecialSerialized>
+
+    @GET("api/v1/documents")
+    fun getDataJDHINSecondary(
+        @Query("source") dataID: Int,
+        @Query("page") data: Int
+    ): Call<SpecialSerialized>
+
+    @GET("api/v1/documents")
+    fun getRegulationJdhin(@Query("source") dataID: Int): Call<SpecialSerialized>
+
+    @GET("api/v1/subjects")
+    fun getSearchSubject(@Query("search") dataInput: String): Call<ArrayList<SubjectSerialized>>
+
+    @GET("api/v1/sources")
+    fun getSearchJdhin(@Query("search") dataInput: String): Call<ArrayList<JdhinSerialized>>
+
+    @GET("api/v1/documents")
+    fun getSearchDocument(@Query("search") dataInput: String): Call<SpecialSerialized>
+
+    //getDataHistory
+    @GET("api/v1/documents/{id}")
+    fun getDataHistory(@Path("id") dataID: Int): Call<List<DetailSerialized>>
 }

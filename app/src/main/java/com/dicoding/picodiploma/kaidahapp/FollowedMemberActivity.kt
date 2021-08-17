@@ -13,7 +13,6 @@ import com.dicoding.picodiploma.kaidahapp.databinding.ActivityFollowedMemberBind
 import com.dicoding.picodiploma.kaidahapp.datajdhin.JdhinSerialized
 import com.dicoding.picodiploma.kaidahapp.datalistregulationJdhin.DetailJdhinActivity
 import com.dicoding.picodiploma.kaidahapp.entity.MemberRespone
-import com.dicoding.picodiploma.kaidahapp.retrofit.DataClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

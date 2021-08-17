@@ -19,7 +19,6 @@ import com.dicoding.picodiploma.kaidahapp.databinding.FragmentMemberBinding
 import com.dicoding.picodiploma.kaidahapp.datajdhin.JdhinSerialized
 import com.dicoding.picodiploma.kaidahapp.datalistregulationJdhin.DetailJdhinActivity
 import com.dicoding.picodiploma.kaidahapp.helper.SharedPreference
-import com.dicoding.picodiploma.kaidahapp.retrofit.DataClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -64,7 +63,7 @@ class MemberFragment : Fragment() {
     }
 
     private fun addDataFromAPI(){
-        DataClient.InstanceApi.getDataJdhin().enqueue(object : Callback<ArrayList<JdhinSerialized>> {
+        RetrofitClient.instance.getDataJdhin().enqueue(object : Callback<ArrayList<JdhinSerialized>> {
             override fun onResponse(
                     call: Call<ArrayList<JdhinSerialized>>,
                     response: Response<ArrayList<JdhinSerialized>>
@@ -120,7 +119,7 @@ class MemberFragment : Fragment() {
     }
 
     private fun getSearchJdhin(username: String){
-        DataClient.InstanceApi.getSearchJdhin(username).enqueue(object : Callback<ArrayList<JdhinSerialized>> {
+        RetrofitClient.instance.getSearchJdhin(username).enqueue(object : Callback<ArrayList<JdhinSerialized>> {
             override fun onResponse(
                     call: Call<ArrayList<JdhinSerialized>>,
                     response: Response<ArrayList<JdhinSerialized>>

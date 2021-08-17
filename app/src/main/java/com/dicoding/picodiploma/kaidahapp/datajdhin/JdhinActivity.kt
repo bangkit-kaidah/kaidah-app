@@ -10,9 +10,9 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.picodiploma.kaidahapp.R
+import com.dicoding.picodiploma.kaidahapp.api.RetrofitClient
 import com.dicoding.picodiploma.kaidahapp.databinding.ActivityJdhinBinding
 import com.dicoding.picodiploma.kaidahapp.datalistregulationJdhin.DetailJdhinActivity
-import com.dicoding.picodiploma.kaidahapp.retrofit.DataClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,7 +37,7 @@ class JdhinActivity : AppCompatActivity() {
     }
 
     private fun addDataFromAPI(){
-        DataClient.InstanceApi.getDataJdhin().enqueue(object : Callback<ArrayList<JdhinSerialized>>{
+        RetrofitClient.instance.getDataJdhin().enqueue(object : Callback<ArrayList<JdhinSerialized>>{
             override fun onResponse(
                 call: Call<ArrayList<JdhinSerialized>>,
                 response: Response<ArrayList<JdhinSerialized>>
@@ -92,7 +92,7 @@ class JdhinActivity : AppCompatActivity() {
 
 
     private fun getSearchJdhin(username: String){
-        DataClient.InstanceApi.getSearchJdhin(username).enqueue(object : Callback<ArrayList<JdhinSerialized>>{
+        RetrofitClient.instance.getSearchJdhin(username).enqueue(object : Callback<ArrayList<JdhinSerialized>>{
             override fun onResponse(
                 call: Call<ArrayList<JdhinSerialized>>,
                 response: Response<ArrayList<JdhinSerialized>>

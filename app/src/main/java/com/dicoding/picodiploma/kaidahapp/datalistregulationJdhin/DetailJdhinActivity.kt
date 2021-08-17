@@ -16,7 +16,6 @@ import com.dicoding.picodiploma.kaidahapp.dataregulation.AdapterRetrofit2
 import com.dicoding.picodiploma.kaidahapp.dataregulation.DataSerialized
 import com.dicoding.picodiploma.kaidahapp.dataregulation.SpecialSerialized
 import com.dicoding.picodiploma.kaidahapp.helper.SharedPreference
-import com.dicoding.picodiploma.kaidahapp.retrofit.DataClient
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
@@ -86,7 +85,7 @@ class DetailJdhinActivity : AppCompatActivity() {
     }
 
     private fun getDataFromAPI(id: Int){
-        DataClient.InstanceApi.getRegulationJdhin(id).enqueue(object : Callback<SpecialSerialized>{
+        RetrofitClient.instance.getRegulationJdhin(id).enqueue(object : Callback<SpecialSerialized>{
             override fun onResponse(
                 call: Call<SpecialSerialized>,
                 response: Response<SpecialSerialized>
@@ -112,7 +111,7 @@ class DetailJdhinActivity : AppCompatActivity() {
         isLoading = true
         if (isOnRefresh) binding.progressBar.visibility = View.VISIBLE
         val gitId = intent.getIntExtra(EXTRA_JDHIN, 0)
-        DataClient.InstanceApi.getDataJDHINSecondary(gitId,page)
+        RetrofitClient.instance.getDataJDHINSecondary(gitId,page)
             .enqueue(object : Callback<SpecialSerialized>{
                 override fun onResponse(
                     call: Call<SpecialSerialized>,

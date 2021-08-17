@@ -13,12 +13,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.picodiploma.kaidahapp.adapter.JdihnMemberAdapter
 import com.dicoding.picodiploma.kaidahapp.adapter.SubjectAdaptor
 import com.dicoding.picodiploma.kaidahapp.adapter.TopSubjectAdapter
+import com.dicoding.picodiploma.kaidahapp.api.RetrofitClient
 import com.dicoding.picodiploma.kaidahapp.databinding.FragmentSubjectBinding
 import com.dicoding.picodiploma.kaidahapp.datajdhin.JdhinSerialized
 import com.dicoding.picodiploma.kaidahapp.dataregulation.PageRegulationActivity
 import com.dicoding.picodiploma.kaidahapp.datasubject.AdapterSubject
 import com.dicoding.picodiploma.kaidahapp.datasubject.SubjectSerialized
-import com.dicoding.picodiploma.kaidahapp.retrofit.DataClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -56,7 +56,7 @@ class SubjectFragment : Fragment() {
     }
 
     private fun addDataFromAPI(){
-        DataClient.InstanceApi.getDataSubject().enqueue(object : Callback<ArrayList<SubjectSerialized>> {
+        RetrofitClient.instance.getDataSubject().enqueue(object : Callback<ArrayList<SubjectSerialized>> {
             override fun onResponse(
                     call: Call<ArrayList<SubjectSerialized>>,
                     response: Response<ArrayList<SubjectSerialized>>
@@ -85,7 +85,7 @@ class SubjectFragment : Fragment() {
     }
 
     private fun getSearchJdhin(username: String){
-        DataClient.InstanceApi.getSearchSubject(username).enqueue(object : Callback<ArrayList<SubjectSerialized>> {
+        RetrofitClient.instance.getSearchSubject(username).enqueue(object : Callback<ArrayList<SubjectSerialized>> {
             override fun onResponse(
                     call: Call<ArrayList<SubjectSerialized>>,
                     response: Response<ArrayList<SubjectSerialized>>

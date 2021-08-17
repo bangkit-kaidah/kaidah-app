@@ -14,12 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.picodiploma.kaidahapp.MainActivity
 import com.dicoding.picodiploma.kaidahapp.R
+import com.dicoding.picodiploma.kaidahapp.api.RetrofitClient
 import com.dicoding.picodiploma.kaidahapp.databinding.ActivityDetailBinding
 import com.dicoding.picodiploma.kaidahapp.datahistory.AdapterHistory
 import com.dicoding.picodiploma.kaidahapp.datahistory.HistoryActivity
 import com.dicoding.picodiploma.kaidahapp.dataregulation.PageRegulationActivity
 import com.dicoding.picodiploma.kaidahapp.datasubject.SubjectSerialized
-import com.dicoding.picodiploma.kaidahapp.retrofit.DataClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -60,7 +60,7 @@ class DetailActivity : AppCompatActivity() {
 
     //get Detail Data
     private fun addDetailAPI(id: Int){
-        DataClient.InstanceApi.getDetail(id).enqueue(object : Callback<List<DetailSerialized>>{
+        RetrofitClient.instance.getDetail(id).enqueue(object : Callback<List<DetailSerialized>>{
             override fun onResponse(
                 call: Call<List<DetailSerialized>>,
                 response: Response<List<DetailSerialized>>
@@ -140,7 +140,7 @@ class DetailActivity : AppCompatActivity() {
 
     //History
     private fun addHistoryAPI(id: Int) {
-        DataClient.InstanceApi.getDataHistory(id)
+        RetrofitClient.instance.getDataHistory(id)
             .enqueue(object : Callback<List<DetailSerialized>> {
                 override fun onResponse(
                     call: Call<List<DetailSerialized>>,

@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.picodiploma.kaidahapp.datadetail.DetailActivity
 import com.dicoding.picodiploma.kaidahapp.R
+import com.dicoding.picodiploma.kaidahapp.api.RetrofitClient
 import com.dicoding.picodiploma.kaidahapp.databinding.ActivityPageRegulationBinding
-import com.dicoding.picodiploma.kaidahapp.retrofit.DataClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -63,7 +63,7 @@ class PageRegulationActivity : AppCompatActivity() {
     }
 
     private fun addDataAll() {
-        DataClient.InstanceApi.getDataAll().enqueue(object : Callback<SpecialSerialized> {
+        RetrofitClient.instance.getDataAll().enqueue(object : Callback<SpecialSerialized> {
             override fun onResponse(
                     call: Call<SpecialSerialized>,
                     response: Response<SpecialSerialized>
@@ -86,7 +86,7 @@ class PageRegulationActivity : AppCompatActivity() {
 
     //add Data Full search and mandatory Data
     private fun addData(id: Int) {
-        DataClient.InstanceApi.getDataSpecial(id).enqueue(object : Callback<SpecialSerialized> {
+        RetrofitClient.instance.getDataSpecial(id).enqueue(object : Callback<SpecialSerialized> {
             override fun onResponse(
                 call: Call<SpecialSerialized>,
                 response: Response<SpecialSerialized>
@@ -108,7 +108,7 @@ class PageRegulationActivity : AppCompatActivity() {
     }
 
     private fun getSearchDocument(username: String) {
-        DataClient.InstanceApi.getSearchDocument(username)
+        RetrofitClient.instance.getSearchDocument(username)
             .enqueue(object : Callback<SpecialSerialized> {
                 override fun onResponse(
                     call: Call<SpecialSerialized>,
@@ -167,7 +167,7 @@ class PageRegulationActivity : AppCompatActivity() {
         isLoading = true
         if (isOnRefresh) binding.progressBar.visibility = View.VISIBLE
         val gitId = intent.getIntExtra(EXTRA, 0)
-        DataClient.InstanceApi.getDataRegulationSecondary(gitId, page)
+        RetrofitClient.instance.getDataRegulationSecondary(gitId, page)
             .enqueue(object : Callback<SpecialSerialized> {
                 override fun onResponse(
                     call: Call<SpecialSerialized>,
@@ -190,7 +190,7 @@ class PageRegulationActivity : AppCompatActivity() {
     private fun getNextSearchPage(isOnRefreshSearch: Boolean, item: String) {
         isLoading = true
         if (isOnRefreshSearch) binding.progressBar.visibility = View.VISIBLE
-        DataClient.InstanceApi.getDataSearchSecondary(item, page)
+        RetrofitClient.instance.getDataSearchSecondary(item, page)
             .enqueue(object : Callback<SpecialSerialized>{
                 override fun onResponse(
                     call: Call<SpecialSerialized>,

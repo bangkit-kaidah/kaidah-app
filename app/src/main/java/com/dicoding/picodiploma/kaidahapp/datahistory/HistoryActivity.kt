@@ -6,13 +6,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.dicoding.picodiploma.kaidahapp.api.RetrofitClient
 import com.dicoding.picodiploma.kaidahapp.databinding.ActivityHistoryBinding
 import com.dicoding.picodiploma.kaidahapp.datadetail.DataHistory
 import com.dicoding.picodiploma.kaidahapp.datadetail.DetailActivity
 import com.dicoding.picodiploma.kaidahapp.datadetail.DetailSerialized
 import com.dicoding.picodiploma.kaidahapp.dataregulation.AdapterRetrofit2
 import com.dicoding.picodiploma.kaidahapp.dataregulation.DataSerialized
-import com.dicoding.picodiploma.kaidahapp.retrofit.DataClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,7 +40,7 @@ class HistoryActivity : AppCompatActivity() {
     }
 
     private fun addDetailAPI(id: Int){
-        DataClient.InstanceApi.getDataHistory(id).enqueue(object : Callback<List<DetailSerialized>> {
+        RetrofitClient.instance.getDataHistory(id).enqueue(object : Callback<List<DetailSerialized>> {
             override fun onResponse(
                 call: Call<List<DetailSerialized>>,
                 response: Response<List<DetailSerialized>>
