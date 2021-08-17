@@ -68,7 +68,7 @@ class DetailJdhinActivity : AppCompatActivity() {
         statusFavorite(statusFav)
         //tambahan
         val id = sharedPreference.getValueInt("roleId")
-        if (id == 1){
+        if (id == 0){
             fab.visibility = View.GONE
         }
         fab.setOnClickListener {
