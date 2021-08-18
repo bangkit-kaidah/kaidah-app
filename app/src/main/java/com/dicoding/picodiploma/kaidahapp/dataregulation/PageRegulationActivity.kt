@@ -3,11 +3,14 @@ package com.dicoding.picodiploma.kaidahapp.dataregulation
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.View
+import android.widget.EditText
+import android.widget.ImageView
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -136,6 +139,9 @@ class PageRegulationActivity : AppCompatActivity() {
         val manager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val search = menu.findItem(R.id.search)
         val searchV = search?.actionView as SearchView
+        var searchEditText = searchV.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+        searchEditText.setTextColor(resources.getColor(R.color.white))
+        searchEditText.setHintTextColor(resources.getColor(R.color.white))
 
         searchV.setSearchableInfo(manager.getSearchableInfo(componentName))
         searchV.queryHint = "Masukkan Data"

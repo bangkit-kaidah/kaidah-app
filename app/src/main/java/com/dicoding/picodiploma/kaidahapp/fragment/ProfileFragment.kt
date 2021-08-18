@@ -17,6 +17,7 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.FragmentTransaction
 import com.dicoding.picodiploma.kaidahapp.*
 import com.dicoding.picodiploma.kaidahapp.api.RetrofitClient
 import com.dicoding.picodiploma.kaidahapp.databinding.FragmentProfileBinding
@@ -70,6 +71,12 @@ class ProfileFragment : Fragment() {
                 dialog, whichButton ->
                 sharedPreference.clearSharedPreference()
                 activity?.finishAndRemoveTask()
+                var transaction = activity?.supportFragmentManager?.beginTransaction()
+
+                transaction?.replace(R.id.fragment_profile, LoginFragment())
+                transaction?.addToBackStack(null)
+                transaction?.commit()
+
             } .setNegativeButton(R.string.tidak) {
                 dialog, whichButton -> //Close
             } .show()
