@@ -6,11 +6,11 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -37,6 +37,8 @@ class PageRegulationActivity : AppCompatActivity() {
     private var page = 1
     private var totalPage = 50
     private var isLoading = false
+    private var hasNext = true
+    private var currentQuery = ""
 
     private lateinit var binding: ActivityPageRegulationBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,18 +53,15 @@ class PageRegulationActivity : AppCompatActivity() {
 
         //addDatafull from API
         val gitId = intent.getIntExtra(EXTRA, 0)
-        Log.d("asdsadasda2", "IDnya: "+gitId)
         if (gitId != -1) {
             addData(gitId)
             binding.progressBar.visibility = View.GONE
-            Log.d("asdsadasda2", "Gagal IDnya: "+gitId)
-        }
-        if (gitId == -1){
+        } else {
             addDataAll()
             binding.progressBar.visibility = View.GONE
-            Log.d("asdsadasda2", "Berhasil IDnya: "+gitId)
         }
         setContentView(binding.root)
+        a()
     }
 
     private fun addDataAll() {
@@ -75,7 +74,6 @@ class PageRegulationActivity : AppCompatActivity() {
                     val date = response.body()?.data
                     setRecyclerView()
                     date?.let { adapterp.setterList(it) }
-                    a()
                     addAdapterDetail()
                     binding.progressBar.visibility = View.GONE
                 }
@@ -98,7 +96,6 @@ class PageRegulationActivity : AppCompatActivity() {
                     val date = response.body()?.data
                     setRecyclerView()
                     date?.let { adapterp.setterList(it) }
-                    a()
                     addAdapterDetail()
                     binding.progressBar.visibility = View.GONE
                 }
@@ -121,7 +118,6 @@ class PageRegulationActivity : AppCompatActivity() {
                         val date = response.body()?.data
                         list.clear()
                         date?.let { adapterp.setterList(it) }
-                        b(username)
                         addAdapterDetail()
                     }
                 }
@@ -149,17 +145,23 @@ class PageRegulationActivity : AppCompatActivity() {
 
             override fun onQueryTextSubmit(query: String): Boolean {
                 list.clear()
+                currentQuery = query
                 getSearchDocument(query)
-                b(query)
                 return true
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
                 if (newText.isEmpty()){
-                    isLoading = false
                     list.clear()
+                    isLoading = false
+                    hasNext = true
+                    currentQuery = ""
                     val gitId = intent.getIntExtra(EXTRA, 0)
-                    addData(gitId)
+                    if (gitId != -1) {
+                        addData(gitId)
+                    } else {
+                        addDataAll()
+                    }
                 }
                 return false
             }
@@ -181,8 +183,10 @@ class PageRegulationActivity : AppCompatActivity() {
                         response: Response<SpecialSerialized>
                     ) {
                         val listRes = response.body()?.data
+                        if (response.body()?.nextPage == null) {
+                            hasNext = false
+                        }
                         listRes?.let { adapterp.setterList(it) }
-                        a()
                         binding.progressBar.visibility = View.GONE
                         isLoading = false
                     }
@@ -200,8 +204,10 @@ class PageRegulationActivity : AppCompatActivity() {
                         response: Response<SpecialSerialized>
                     ) {
                         val listRes = response.body()?.data
+                        if (response.body()?.nextPage == null) {
+                            hasNext = false
+                        }
                         listRes?.let { adapterp.setterList(it) }
-                        a()
                         binding.progressBar.visibility = View.GONE
                         isLoading = false
                     }
@@ -223,8 +229,10 @@ class PageRegulationActivity : AppCompatActivity() {
                     response: Response<SpecialSerialized>
                 ) {
                     val listres = response.body()?.data
+                    if (response.body()?.nextPage == null) {
+                        hasNext = false
+                    }
                     listres?.let { adapterp.setterList(it) }
-                    b(item)
                     binding.progressBar.visibility = View.GONE
                     isLoading = false
 
@@ -258,32 +266,13 @@ class PageRegulationActivity : AppCompatActivity() {
     private fun a() {
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                val visibleCount = layoutmanagerrv.childCount
-                val pastVisibleItem = layoutmanagerrv.findFirstCompletelyVisibleItemPosition()
-                val total = adapterp.itemCount
-
-                if (!isLoading && page < totalPage) {
-                    if (visibleCount + pastVisibleItem <= total) {
-                        page++
-                        getNextPage(false)
+                if (!recyclerView.canScrollVertically(1) && hasNext) {
+                    page++
+                    if(currentQuery == "") {
+                        getNextPage(true)
                     }
-                }
-                super.onScrolled(recyclerView, dx, dy)
-            }
-        })
-    }
-
-    private fun b(item: String){
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                val visibleCount = layoutmanagerrv.childCount
-                val pastVisibleItem = layoutmanagerrv.findFirstCompletelyVisibleItemPosition()
-                val total = adapterp.itemCount
-
-                if (!isLoading && page < totalPage) {
-                    if (visibleCount + pastVisibleItem <= total) {
-                        page++
-                        getNextSearchPage(false, item)
+                    else {
+                        getNextSearchPage(true, currentQuery)
                     }
                 }
                 super.onScrolled(recyclerView, dx, dy)

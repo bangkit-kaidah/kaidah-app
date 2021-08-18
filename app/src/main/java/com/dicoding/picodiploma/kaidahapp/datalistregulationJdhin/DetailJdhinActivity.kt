@@ -3,7 +3,6 @@ package com.dicoding.picodiploma.kaidahapp.datalistregulationJdhin
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -43,6 +42,7 @@ class DetailJdhinActivity : AppCompatActivity() {
     private var totalPage = 50
     private var isLoading = false
     private var statusFav = false
+    private var hasNext = true
 
     private lateinit var binding: ActivityDetailJdhinBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,8 +64,6 @@ class DetailJdhinActivity : AppCompatActivity() {
 
         status = gitFollowed
         statusFav = status
-        Log.d("asadsdasdasda", statusFav.toString())
-        Log.d("asadsdasdasda", gitFollowed.toString())
 
         statusFavorite(statusFav)
         //tambahan
@@ -84,6 +82,7 @@ class DetailJdhinActivity : AppCompatActivity() {
         }
 
         setContentView(binding.root)
+        b()
     }
 
     private fun getDataFromAPI(id: Int){
@@ -95,7 +94,6 @@ class DetailJdhinActivity : AppCompatActivity() {
                 recyclerView.layoutManager = layoutmanagerrv
                 recyclerView.adapter = adapterp
                 response.body()?.data?.let { adapterp.setterList(it) }
-                b()
                 adapterp.setOnItemClickCallback(object : AdapterRetrofit2.OnItemClickCallback {
                     override fun onItemClicked(data: DataSerialized) {
                         showSelectedRecyclerView(data)
@@ -120,8 +118,10 @@ class DetailJdhinActivity : AppCompatActivity() {
                     response: Response<SpecialSerialized>
                 ) {
                     val listrest = response.body()?.data
+                    if (response.body()?.nextPage == null) {
+                        hasNext = false
+                    }
                     listrest?.let { adapterp.setterList(it) }
-                    b()
                     binding.progressBar.visibility = View.GONE
                     isLoading = false
                 }
@@ -134,15 +134,9 @@ class DetailJdhinActivity : AppCompatActivity() {
     private fun b(){
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                val visibleCount = layoutmanagerrv.childCount
-                val pastVisibleItem = layoutmanagerrv.findFirstCompletelyVisibleItemPosition()
-                val total = adapterp.itemCount
-
-                if (!isLoading && page < totalPage) {
-                    if (visibleCount + pastVisibleItem <= total) {
-                        page++
-                        getNextJdhin(false)
-                    }
+                if (!recyclerView.canScrollVertically(1) && hasNext) {
+                    page++
+                    getNextJdhin(true)
                 }
                 super.onScrolled(recyclerView, dx, dy)
             }
@@ -168,14 +162,10 @@ class DetailJdhinActivity : AppCompatActivity() {
     private fun postDataToApi(id: Int){
         RetrofitClient.instanceUser.userFollow(id).enqueue(object : Callback<FollowResponse>{
             override fun onResponse(call: Call<FollowResponse>, response: Response<FollowResponse>) {
-                response.errorBody()?.let { Log.d("saddsaasdda1", it.string()) }
-                Log.d("saddsaasdda1", response.message())
-                Log.d("saddsaasdda2", response.body().toString())
-                Log.d("saddsaasdda3", response.body()?.message.toString())
-                val a = response.body()?.message.toString()
+                val resp = response.body()?.message.toString()
                 statusFav = true
                 status = true
-                Toast.makeText(applicationContext,a, Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext,resp, Toast.LENGTH_SHORT).show()
             }
             override fun onFailure(call: Call<FollowResponse>, t: Throwable) {
                 Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
@@ -188,9 +178,6 @@ class DetailJdhinActivity : AppCompatActivity() {
     private fun deleteDataAPI(id: Int){
         RetrofitClient.instanceUser.deleteUserFollow(id).enqueue(object : Callback<FollowResponse>{
             override fun onResponse(call: Call<FollowResponse>, response: Response<FollowResponse>) {
-                Log.d("saddsaasdda4", response.message())
-                Log.d("saddsaasdda5", response.body().toString())
-                Log.d("saddsaasdda6", response.body()?.message.toString())
                 statusFav = false
                 status = false
                 Toast.makeText(applicationContext, response.body()?.message.toString(), Toast.LENGTH_SHORT).show()
